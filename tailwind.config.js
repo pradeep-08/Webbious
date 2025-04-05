@@ -2,7 +2,11 @@
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {  keyframes: {
+    extend: {
+      fontFamily: {
+        figtree: ['Figtree', 'sans-serif'],
+      },
+      keyframes: {
       blinkWave: {
         '0%': { opacity: 1, transform: 'scale(1)' },
         '50%': { opacity: 0.9, transform: 'scale(1.1)' },
