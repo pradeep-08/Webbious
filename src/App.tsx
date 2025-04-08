@@ -14,24 +14,19 @@ import ContactUs from "./Component/Contact";
 
 function App() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white">
       <nav className="pt-16">
-        <Header />
+      <Header />
       </nav>
       <div className="pad pt-5">
-      <Hero/>
+      <Hero />
       </div>
-      <AICard/>
-      <AnimatePage/>
-      <PricingPage/>
-      <Projects/>
-      <Team/>
-      <ContactUs/>
-
-
-
-    
-
+      <AICard />
+      <AnimatePage />
+      <PricingPage />
+      <Projects />
+      <Team />
+      <ContactUs />
     </div>
   );
 }

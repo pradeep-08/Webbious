@@ -5,7 +5,7 @@ import ContactU from "./img/contacts.jpg"
 
 const ContactUs = () => {
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <div className="min-h-screen flex items-center justify-center ">
             <div className="bg-white p-10 rounded-2xl shadow-xl w-full max-w-4xl flex">
                 {/* Left Section */}
                 <div className="w-1/2 pr-8">
