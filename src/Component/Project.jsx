@@ -15,7 +15,7 @@ const projects = [
 
 const Projects = () => {
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+    <div className="bg-white flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12 md:py-16">
       <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-center ">
         {/* Left Side - Responsive Grid of Color Divs (hidden on mobile) */}
         <div className="hidden sm:grid grid-cols-2 sm:grid-cols-3 gap-4 w-full">
