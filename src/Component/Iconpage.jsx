@@ -80,13 +80,13 @@ const AnimatePage = () => {
                   return (
                     <div
                       key={index}
-                      className={`w-24 h-28 flex flex-col items-center justify-center text-center space-y-2 transition-all duration-500 ease-out ${isActive ? 'scale-110' : 'scale-100'
+                      className={`w-24 h-28 flex flex-col items-center justify-center text-center space-y-2 transition-all duration-700 ease-out ${isActive ? 'scale-110' : 'scale-100'
                         }`}
                     >
                       <img
                         src={logo.src}
                         alt={logo.alt}
-                        className={`h-16 w-16 object-contain transition-all duration-500 ease-out ${isActive ? 'grayscale-0' : 'grayscale'}`}
+                        className={`h-16 w-16 object-contain transition-all duration-700 ease-out ${isActive ? 'grayscale-0' : 'grayscale'}`}
                       />
                       <span className={`text-m text-gray-700 ${isActive ? 'font-bold' : 'font-normal'}`}>{logo.alt}</span>
                     </div>
