@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import Logo from './img/logo.png';
+import Logo from './img/fulLogo.png';
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
 
     return (
         <header className="fixed top-0 left-0 w-full h-18 flex justify-between items-center px-8 py-4 bg-white text-black shadow-lg z-10">
-            {/* Logo Section */}
-            <div className="flex items-center space-x-4">
-                <img src={Logo} alt="Logo" className="h-12 w-auto" />
-                <h1 className="text-2xl font-bold">WEBBIOUS</h1>
-            </div>
+         
+                <img src={Logo} alt="Logo" className="h-[60px] w-auto" />
+                
+            
 
             {/* Hamburger Menu for Mobile */}
             <div className="md:hidden">
