@@ -60,9 +60,9 @@ const AnimatePage = () => {
       </style>
 
       <div className="w-full max-w-7xl mx-auto px-1">
-        <h2 className="text-center text-2xl sm:text-3xl font-semibold ">
-          Our <span className="text-blue-600 ">Tech Stack</span> – Future-Ready Technologies
-        </h2>
+        <h1 className="text-center text-2xl sm:text-3xl font-semibold ">
+          Our <span className="text-blue-600 font-bold">Tech Stack</span> – Future-Ready Technologies
+        </h1>
 
         <div className="relative group">
           <div className="py-12 overflow-hidden space-y-10 group-hover:blur-sm transition duration-300 bg-transparent relative">
