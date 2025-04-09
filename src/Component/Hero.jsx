@@ -1,6 +1,7 @@
 import React from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import officeImage from "./img/heroImage.png";
+import UnderLine from "./img/underLine.png"
 
 // function Hero() {
 //   return (
@@ -76,14 +77,14 @@ export default function Hero() {
                 <span className="transition-colors duration-500">
                   Solutions
                 </span>
-                <span className="text-blue-600">.</span>
+                <span className="text-white sm:text-blue-600">.</span>
                 {/* Underline effect */}
-                <span className="absolute left-0 bottom-0 w-full h-1 bg-blue-200 -z-10 transform -translate-y-1/2 rotate-1"></span>
+                <img src={UnderLine} alt="Logo" className="h-[15px] mt-5 w-auto hidden md:block" />
               </span>
             </h1>
 
-            <div className="mt-8">
-              <button className="border text-white sm:text-blue-600 sm:border-blue-600 px-6 py-3 rounded-md font-medium transition-all duration-300">
+            <div className="mt-8 sm:mt-5">
+              <button className="border mt-10  text-white sm:text-blue-600 sm:border-blue-600 px-6 py-3  rounded-md font-medium transition-all duration-300">
                 Grow Your Business Now
               </button>
             </div>
