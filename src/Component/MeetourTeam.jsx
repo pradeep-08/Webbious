@@ -5,17 +5,13 @@ import HiringBg from "./img/Hiring.jpg";
 const Team = () => {
   return (
     <div className="team flex items-center justify-center">
-      <div className="min-h-screen flex flex-col items-center bg-white px-4 sm:px-6 py-10 sm:py-20 w-full max-w-[1200px]">
-        
-        {/* Meet Our Team Section */}
-        <div className="w-full flex flex-col md:flex-row items-center justify-between gap-12">
-          
-          {/* Left Section */}
-          <div className="md:w-1/2 space-y-6 text-center md:text-left">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#4A4A4A] leading-tight">
+      <div className="h-[70hv] flex flex-col items-center bg-white px-4 sm:px-6  w-full sm:w-[100vw]">
+        <div className="max-w-7xl w-full flex flex-col md:flex-row items-center justify-between gap-10 sm:gap-12">
+          <div className="w-full md:w-1/2 space-y-6 text-center md:text-left">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#4A4A4A] leading-tight">
               Meet Our Team
             </h2>
-            <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed mb-6 sm:mb-8">
               Need expert guidance or have a project in mind? Our management team is here to help.
               Whether you're looking for custom software solutions, AI-driven strategies, or digital
               transformation consulting, we’re ready to collaborate.
@@ -27,15 +23,15 @@ const Team = () => {
             </a>
           </div>
 
-          {/* Right Section */}
-          <div className="md:w-1/2 flex flex-col items-center md:items-start">
+          <div className="w-full md:w-1/2 flex flex-col items-center md:items-start">
             <img
               src={Meet}
               alt="Team"
-              className="rounded-lg shadow-md object-cover w-full max-w-[250px] sm:max-w-[300px] md:max-w-[350px] transition-transform duration-300 hover:scale-105"
+              className="rounded-lg shadow-md object-cover w-[300px] sm:w-[380px] md:w-[450px] transition-transform duration-300 hover:scale-105"
             />
-            <div className="mt-6 text-center md:text-left max-w-sm sm:max-w-md">
-              <p className="italic text-gray-600 text-sm sm:text-base leading-relaxed">
+
+            <div className="mt-6 text-center md:text-left max-w-xs sm:max-w-sm md:max-w-md">
+              <p className="italic text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed">
                 "At Webbious, we build more than software—we shape the future. Our solutions drive
                 innovation, impact, and keep you ahead of the competition."
               </p>
@@ -45,9 +41,8 @@ const Team = () => {
           </div>
         </div>
 
-        {/* Join Our Team Section */}
         <div
-          className="mt-16 sm:mt-20 w-full flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-cover bg-center rounded-lg p-6 text-white shadow-lg"
+          className="mt-12 sm:mt-20 w-full max-w-7xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-cover bg-center rounded-lg p-4 sm:p-6 text-white shadow-lg"
           style={{ backgroundImage: `url(${HiringBg})` }}
         >
           <h2 className="text-lg sm:text-xl md:text-2xl font-bold">
