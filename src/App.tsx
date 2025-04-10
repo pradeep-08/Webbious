@@ -1,4 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import Header from "./Component/Navbar";
 import Hero from "./Component/Hero";
 import AICard from "./Component/AI Card";
@@ -8,10 +14,11 @@ import Projects from "./Component/Project";
 import Team from "./Component/MeetourTeam";
 import ContactUs from "./Component/Contact";
 import Footer from "./Component/fotter";
-import '/App.css';
 import CircleCursor from "./Component/cursor";
+import CareersPage from "./Component/Jobs";
+import "/App.css";
 
-function App() {
+function MainContent() {
   const [showTopNav, setShowTopNav] = useState(true);
   const [showBottomNav, setShowBottomNav] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -43,7 +50,7 @@ function App() {
         setIsFooterVisible(entry.isIntersecting);
       },
       {
-        threshold: 0.1, // adjust as needed
+        threshold: 0.1,
       }
     );
 
@@ -61,7 +68,7 @@ function App() {
   return (
     <div className="min-h-screen bg-white">
       <CircleCursor />
-      {/* Top Navbar */}
+
       <nav
         className={`transition-all duration-300 ${
           showTopNav ? "opacity-100" : "opacity-0"
@@ -93,6 +100,28 @@ function App() {
         </div>
       )}
     </div>
+  );
+}
+
+function CareersContent() {
+  return (
+    <div className="min-h-screen bg-white">
+      <CircleCursor />
+      <Header />
+      <CareersPage />
+      <Footer />
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainContent />} />
+        <Route path="/careers" element={<CareersContent />} />
+      </Routes>
+    </Router>
   );
 }
 

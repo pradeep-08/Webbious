@@ -52,11 +52,14 @@ const Team = () => {
             Grow your career with Webbious! Be part of an innovative and dynamic team.
           </p>
           <a
-            href="#"
+            href="/careers"
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-white text-purple-600 font-semibold px-4 py-2 rounded-lg shadow-md hover:bg-gray-200 transition duration-300 text-sm sm:text-base"
           >
             Apply Now
           </a>
+
         </div>
       </div>
     </div>
