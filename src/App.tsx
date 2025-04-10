@@ -8,6 +8,7 @@ import Projects from "./Component/Project";
 import Team from "./Component/MeetourTeam";
 import ContactUs from "./Component/Contact";
 import Footer from "./Component/fotter";
+import '/App.css';
 
 function App() {
   const [showTopNav, setShowTopNav] = useState(true);

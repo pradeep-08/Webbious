@@ -5,7 +5,7 @@ const AICard = () => {
     <div className=" px-4 py-12 sm:px-6 lg:px-8">
       {/* Main Heading */}
       <div className="text-center mb-10">
-        <h2 className="text-3xl md:text-5xl font-extrabold text-gray-800">
+        <h2 className="text-3xl md:text-3xl font-extrabold text-gray-800">
           The Power of Intelligent Tools
         </h2>
         <p className="text-md md:text-xl text-gray-600 mt-4">
