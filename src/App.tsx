@@ -9,6 +9,7 @@ import Team from "./Component/MeetourTeam";
 import ContactUs from "./Component/Contact";
 import Footer from "./Component/fotter";
 import '/App.css';
+import CircleCursor from "./Component/cursor";
 
 function App() {
   const [showTopNav, setShowTopNav] = useState(true);
@@ -59,6 +60,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white">
+      <CircleCursor />
       {/* Top Navbar */}
       <nav
         className={`transition-all duration-300 ${
