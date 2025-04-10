@@ -51,7 +51,7 @@ export default function Hero() {
       <div className="relative flex items-center justify-center lg:justify-start min-h-[75vh] px-6 lg:px-24 py-12">
         <div className="max-w-4xl w-full text-center lg:text-left text-gray-100 sm:text-black transition-colors duration-500">
 
-          <div className="bg-black bg-opacity-40 p-6 rounded-xl sm:bg-transparent sm:p-0 sm:rounded-none transition-all duration-300">
+          <div className="bg-black h-[400px] bg-opacity-40 p-6 rounded-xl sm:bg-transparent sm:p-0 sm:rounded-none transition-all duration-300">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
               Empowering Businesses with
               <br />

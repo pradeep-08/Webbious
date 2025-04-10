@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <footer className="bg-gray-100 text-black pt-10 pb-4">
             <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center md:items-start">
-                
+
                 <div className="mb-6 md:mb-0">
                     <img src={logo} alt="Logo" className="w-16 h-16" />
                 </div>
@@ -26,9 +26,10 @@ const Footer = () => {
                 </div>
             </div>
 
-            <div className="text-[80px] md:text-[300px] font-extrabold text-gray-300 text-center opacity-50 select-none leading-none">
+            <div className="text-6xl sm:text-8xl md:text-[150px] lg:text-[220px] xl:text-[300px] font-extrabold text-gray-300 text-center opacity-50 select-none leading-none break-words overflow-hidden">
                 Webbious
             </div>
+
 
             <p className="text-center font-medium text-sm">
                 Copyrights © 2025 <span className="font-bold">Webbious.</span> All Rights Reserved.
