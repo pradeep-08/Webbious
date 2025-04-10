@@ -7,13 +7,13 @@ const Footer = () => {
             <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center md:items-start">
 
                 <div className="mb-6 md:mb-0">
-                    <img src={logo} alt="Logo" className="w-16 h-16" />
+                  <a href="/"><img  src={logo} alt="Logo" className="w-16 h-16" /></a>  
                 </div>
 
                 <ul className="flex flex-col sm:flex-row gap-4 text-center font-semibold mb-6 md:mb-0">
                     <li><a href="#" className="hover:text-purple-600">Home</a></li>
                     <li><a href="#" className="hover:text-purple-600">About Us</a></li>
-                    <li><a href="#" className="hover:text-purple-600">Careers</a></li>
+                    <li><a href="/careers" className="hover:text-purple-600">Careers</a></li>
                     <li><a href="#" className="hover:text-purple-600">Contact</a></li>
                 </ul>
 
