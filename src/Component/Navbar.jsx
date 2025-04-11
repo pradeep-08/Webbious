@@ -7,6 +7,7 @@ const Header = () => {
     const location = useLocation();
     const isCareersPage = location.pathname === '/careers';
     const isTeamPage = location.pathname === '/team';
+    const isContactPage = location.pathname === '/contact';
 
     return (
         <header className="fixed top-0 left-0 w-full bg-white text-black shadow-md z-50">
@@ -17,12 +18,17 @@ const Header = () => {
                     <div className="flex items-center">
                         {isCareersPage && (
                             <span className="text-lg font-bold bg-gradient-to-r from-[#EDC4E4] via-[#6B00BE] to-[#D075DC] bg-clip-text text-transparent">
-                                JOBS
+                                Jobs
                             </span>
                         )}
                         {isTeamPage && (
                             <span className="text-lg font-bold bg-gradient-to-r from-[#EDC4E4] via-[#6B00BE] to-[#D075DC] bg-clip-text text-transparent">
                                 Resources
+                            </span>
+                        )}
+                        {isContactPage && (
+                            <span className="text-lg font-bold bg-gradient-to-r from-[#EDC4E4] via-[#6B00BE] to-[#D075DC] bg-clip-text text-transparent">
+                                Connect
                             </span>
                         )}
                     </div>
@@ -39,9 +45,9 @@ const Header = () => {
                 </nav>
 
                 <div className="hidden md:block">
-                    <button className="px-5 py-2 border border-blue-600 text-blue-600 rounded-md font-semibold hover:bg-blue-50 transition">
+                    <a href="/contact"><button className="px-5 py-2 border border-blue-600 text-blue-600 rounded-md font-semibold hover:bg-blue-50 transition">
                         Get Quote
-                    </button>
+                    </button></a>
                 </div>
 
                 <div className="md:hidden">

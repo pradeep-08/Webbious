@@ -2,7 +2,7 @@ import React from "react";
 import ContactI from "./img/contact.jpg";
 import ContactU from "./img/contacts.jpg";
 
-const ContactUs = () => {
+const ContactUsCard = () => {
     return (
         <div className=" min-h-[85vh] flex items-center justify-center">
             <div className="bg-white p-4 sm:p-6 md:p-10 rounded-2xl shadow-[0px_1px_18px_-3px_rgba(0,_0,_0,_0.1)] w-full max-w-4xl flex flex-col md:flex-row">
@@ -49,4 +49,4 @@ const ContactUs = () => {
     );
 };
 
-export default ContactUs;
+export default ContactUsCard;

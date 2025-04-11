@@ -16,7 +16,7 @@ const jobs = [
     id: 2,
     title: "UX Designer (Growth & Conversion)",
     status: "Tech Evaluation",
-    description: "Cultural fit, or cultural adequacy, is the harmony between a professional’s values and a company’s culture.",
+    description: "Work on optimizing user conversion paths through data-driven UX strategies.",
     location: "Chennai, India",
     type: "Full time",
     experience: "3-5 years"
@@ -26,7 +26,7 @@ const jobs = [
     title: "Frontend Engineer – React.js Expert",
     status: "Hiring Stage",
     description: "Work with cutting-edge technology in a fast-paced environment to build scalable frontend solutions.",
-    location: "Chennai, India",
+    location: "Remote",
     type: "Full time",
     experience: "3-5 years"
   },
@@ -44,7 +44,7 @@ const jobs = [
     title: "AI/ML Engineer – Predictive Analytics",
     status: "Resume Review",
     description: "Design and deploy intelligent machine learning models in production-grade systems.",
-    location: "Chennai, India",
+    location: "Hybrid (Chennai + Remote)",
     type: "Full time",
     experience: "5+ years"
   },
@@ -65,8 +65,119 @@ const jobs = [
     location: "Chennai, India",
     type: "Full time",
     experience: "0-1 year"
+  },
+  {
+    id: 8,
+    title: "Java Backend Developer – Spring Boot & Microservices",
+    status: "Hiring Stage",
+    description: "Build scalable microservices using Spring Boot and integrate with cloud platforms.",
+    location: "Remote",
+    type: "Full time",
+    experience: "3-6 years"
+  },
+  {
+    id: 9,
+    title: "AI Intern – Computer Vision",
+    status: "Open",
+    description: "Assist the AI team in developing vision-based algorithms and dataset training.",
+    location: "Chennai, India",
+    type: "Internship",
+    experience: "0 years (final year students welcome)"
+  },
+  {
+    id: 10,
+    title: "Data Science Intern",
+    status: "Initial Screening",
+    description: "Support data exploration, cleaning, and predictive model building for internal tools.",
+    location: "Remote",
+    type: "Internship",
+    experience: "0 years"
+  },
+  {
+    id: 11,
+    title: "DevOps Engineer – CI/CD & Monitoring",
+    status: "Tech Evaluation",
+    description: "Automate infrastructure, manage CI/CD pipelines, and monitor system performance.",
+    location: "Chennai, India",
+    type: "Full time",
+    experience: "2-4 years"
+  },
+  {
+    id: 12,
+    title: "DevOps Intern",
+    status: "Resume Review",
+    description: "Learn and support basic DevOps practices such as deployment scripts, logs, and monitoring.",
+    location: "Hybrid (Chennai + Remote)",
+    type: "Internship",
+    experience: "0 years"
+  },
+  {
+    id: 13,
+    title: "Frontend Intern – React.js",
+    status: "Open",
+    description: "Work closely with frontend team to build reusable React components and pages.",
+    location: "Chennai, India",
+    type: "Internship",
+    experience: "0 years"
+  },
+  {
+    id: 14,
+    title: "Junior Backend Developer – Node.js",
+    status: "Open",
+    description: "Support in building backend APIs and databases for scalable web apps.",
+    location: "Chennai, India",
+    type: "Full time",
+    experience: "0-1 year"
+  },
+  {
+    id: 15,
+    title: "Sales Manager – B2B Enterprise",
+    status: "Interviewing",
+    description: "Lead and expand enterprise sales pipelines. Strong understanding of solution-based B2B selling required.",
+    location: "Chennai, India",
+    type: "Full time",
+    experience: "4-7 years"
+  },
+  {
+    id: 16,
+    title: "Business Analyst – Digital Transformation",
+    status: "Hiring Stage",
+    description: "Work closely with clients and tech teams to gather requirements and translate them into actionable insights.",
+    location: "Hybrid (Chennai + Remote)",
+    type: "Full time",
+    experience: "2-4 years"
+  },
+  {
+    id: 17,
+    title: "Data Analyst – Insights & Reporting",
+    status: "Resume Review",
+    description: "Analyze business data and generate reports for strategy, planning, and performance evaluation.",
+    location: "Chennai, India",
+    type: "Full time",
+    experience: "1-3 years"
+  },
+  {
+    id: 18,
+    title: "Product Manager – SaaS",
+    status: "Tech Evaluation",
+    description: "Define product roadmaps and collaborate across engineering, design, and marketing teams.",
+    location: "Remote",
+    type: "Full time",
+    experience: "3-6 years"
+  },
+  {
+    id: 19,
+    title: "Project Coordinator – Entry Level",
+    status: "Open",
+    description: "Assist project managers in planning, documentation, and progress tracking. Great for freshers.",
+    location: "Chennai, India",
+    type: "Full time",
+    experience: "0-1 year"
   }
+
 ];
+
+
 
 const typingWords = ["experience", "talent", "skills", "ideas"];
 

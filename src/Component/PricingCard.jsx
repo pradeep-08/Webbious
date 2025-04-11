@@ -5,7 +5,6 @@ const PricingPage = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-7xl mx-auto px-2 md:px-4 py-6 md:py-10 bg-white">
       
-      {/* Web Development */}
       <div className="flex flex-col w-full max-w-xs md:max-w-none border border-blue-200 rounded-2xl px-4 py-6 md:px-8 md:py-12 shadow-sm hover:shadow-lg hover:shadow-blue-100 transition-all duration-300 min-h-[340px] md:min-h-[480px] mx-auto">
         <h2 className="text-xl md:text-[32px] leading-7 md:leading-[40px] font-semibold text-[#1D2939] mb-4 md:mb-8">
           Web<br />Development
@@ -22,7 +21,6 @@ const PricingPage = () => {
         </ul>
       </div>
 
-      {/* Complete Brand Kit */}
       <div className="flex flex-col w-full max-w-xs md:max-w-none border border-blue-200 rounded-2xl shadow-lg hover:shadow-blue-300 transition-all duration-300 min-h-[340px] md:min-h-[480px] mx-auto overflow-hidden">
         <div className="bg-[#1570EF] text-white px-4 pt-6 pb-4 md:px-6 md:pt-8 md:pb-6">
           <div className="text-xs font-medium text-[#1570EF] bg-[#EFF8FF] inline-block px-3 py-1 rounded-full mb-3 md:mb-4">Most Popular</div>
@@ -43,7 +41,6 @@ const PricingPage = () => {
         </div>
       </div>
 
-      {/* UI/UX Design */}
       <div className="flex flex-col w-full max-w-xs md:max-w-none border border-blue-200 rounded-2xl px-4 py-6 md:px-8 md:py-12 shadow-sm hover:shadow-lg hover:shadow-blue-100 transition-all duration-300 min-h-[340px] md:min-h-[480px] mx-auto">
         <h2 className="text-xl md:text-[32px] leading-7 md:leading-[40px] font-semibold text-[#1D2939] mb-4 md:mb-8">
           UI/UX<br />Design

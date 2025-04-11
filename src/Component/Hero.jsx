@@ -51,9 +51,9 @@ export default function Hero() {
             </h1>
 
             <div className="mt-8 sm:mt-5">
-              <button className="border mt-10  text-white sm:text-blue-600 sm:border-blue-600 px-6 py-3  rounded-md font-medium transition-all duration-300">
+              <a href="/contact" target="_blank"><button className="border mt-10  text-white sm:text-blue-600 sm:border-blue-600 px-6 py-3  rounded-md font-medium transition-all duration-300">
                 Grow Your Business Now
-              </button>
+              </button></a>
             </div>
 
           </div>

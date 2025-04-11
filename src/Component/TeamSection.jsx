@@ -9,13 +9,13 @@ const team = [
     },
     {
         name: "Muthu",
-        role: "Cheif Operating Officer",
+        role: "Cheif Operating Officer (COO)",
         desc: "Ensures smooth daily operations and aligns teams with the company's goals.",
         image: "https://ui-avatars.com/api/?name=Muthu&background=ccc&color=fff&rounded=true",
     },
     {
         name: "Naveen",
-        role: "Cheif Techinal Officer",
+        role: "Cheif Techinal Officer (CTO)",
         desc: "Leads the tech roadmap and oversees the engineering and product innovation.",
         image: "https://ui-avatars.com/api/?name=Naveen&background=ccc&color=fff&rounded=true",
     },
@@ -27,7 +27,7 @@ const team = [
     },
     {
         name: "Ajith Kumar",
-        role: "Android Developer",
+        role: "Senior Android Developer",
         desc: "Designs and delivers seamless mobile experiences for Android users.",
         image: "https://ui-avatars.com/api/?name=Ajith+Kumar&background=ccc&color=fff&rounded=true",
     },
@@ -36,12 +36,14 @@ const team = [
 
 export default function TeamSection() {
     return (
-        <div className="bg-gradient-to-br from-[#ecf4ff] to-[#ffffff] py-24 mt-20 px-4 sm:px-6 lg:px-20 rounded-3xl">
+        <div className="bg-gradient-to-br from-[#ffffff] to-[#ffffff] py-24 mt-20 px-4 sm:px-6 lg:px-20 rounded-3xl">
             <div className="max-w-7xl mx-auto text-center">
                 <div className="inline-block px-3 py-1 text-xs font-semibold bg-[#e0f2fe] text-[#0f62fe] rounded-full mb-4">
                     We’re Hiring!
                 </div>
-                <h2 className="text-4xl font-extrabold text-[#111827] mb-2">Let’s Meet Our Team</h2>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#4A4A4A] leading-tight">
+             Let's Meet Our Team
+            </h2>
                 <p className="text-[#6b7280] mb-8 max-w-2xl mx-auto">
                     Gravida in fermentum et sollicitudin ac orci phasellus egestas. Molestie a iaculis at erat pellentesque adipiscing commodo.
                 </p>

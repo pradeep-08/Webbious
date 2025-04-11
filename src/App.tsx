@@ -12,13 +12,14 @@ import AnimatePage from "./Component/Iconpage";
 import PricingPage from "./Component/PricingCard";
 import Projects from "./Component/Project";
 import Team from "./Component/MeetourTeam";
-import ContactUs from "./Component/Contact";
 import Footer from "./Component/fotter";
 import CircleCursor from "./Component/cursor";
 import CareersPage from "./Component/Jobs";
 import TeamSection from "./Component/TeamSection";
+import ContactUsMain from "./Component/ContactUsMain";
 
 import "/App.css";
+import ContactUsCard from "./Component/Contact";
 
 function MainContent() {
   const [showTopNav, setShowTopNav] = useState(true);
@@ -87,7 +88,7 @@ function MainContent() {
       <PricingPage />
       <Projects />
       <Team />
-      <ContactUs />
+      <ContactUsCard />
 
       <div ref={footerRef}>
         <Footer />
@@ -95,10 +96,16 @@ function MainContent() {
 
       {showBottomNav && !isFooterVisible && (
         <div className="fixed bottom-0 w-full bg-white border-t border-gray-200 shadow-[0_-4px_10px_rgba(0,0,0,0.08)] md:hidden z-50 flex justify-center items-center px-4 py-3 transition-all duration-300">
-          <button className="bg-black text-white px-4 py-2 rounded-md text-sm font-medium">
+          <a
+            href="/contact"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-black text-white px-4 py-2 rounded-md text-sm font-medium"
+          >
             Contact our Team →
-          </button>
+          </a>
         </div>
+
       )}
     </div>
   );
@@ -125,6 +132,19 @@ function TeamsContent() {
   );
 }
 
+function ContactUs() {
+  return (
+    <div className="min-h-screen bg-white">
+      <CircleCursor />
+      <Header />
+      <ContactUsMain />
+      <Footer />
+    </div>
+  );
+}
+
+
+
 function App() {
   return (
     <Router>
@@ -132,6 +152,7 @@ function App() {
         <Route path="/" element={<MainContent />} />
         <Route path="/careers" element={<CareersContent />} />
         <Route path="/team" element={<TeamsContent />} />
+        <Route path="/contact" element={<ContactUs />} />
 
       </Routes>
     </Router>
