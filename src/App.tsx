@@ -16,8 +16,8 @@ import ContactUs from "./Component/Contact";
 import Footer from "./Component/fotter";
 import CircleCursor from "./Component/cursor";
 import CareersPage from "./Component/Jobs";
-import "/App.css";
 import TeamSection from "./Component/team";
+import "/App.css";
 
 function MainContent() {
   const [showTopNav, setShowTopNav] = useState(true);
