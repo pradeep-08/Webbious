@@ -8,6 +8,8 @@ const Header = () => {
     const isCareersPage = location.pathname === '/careers';
     const isTeamPage = location.pathname === '/team';
     const isContactPage = location.pathname === '/contact';
+    const isAboutPage = location.pathname === '/about';
+    const isSolutionPage = location.pathname === '/solutions';
 
     return (
         <header className="fixed top-0 left-0 w-full bg-white text-black shadow-md z-50">
@@ -28,7 +30,17 @@ const Header = () => {
                         )}
                         {isContactPage && (
                             <span className="text-lg font-bold bg-gradient-to-r from-[#EDC4E4] via-[#6B00BE] to-[#D075DC] bg-clip-text text-transparent">
-                                Connect
+                                ∞ Connect
+                            </span>
+                        )}
+                        {isAboutPage && (
+                            <span className="text-lg font-bold bg-gradient-to-r from-[#EDC4E4] via-[#6B00BE] to-[#D075DC] bg-clip-text text-transparent">
+                                Info
+                            </span>
+                        )}
+                        {isSolutionPage && (
+                            <span className="text-lg font-bold bg-gradient-to-r from-[#EDC4E4] via-[#6B00BE] to-[#D075DC] bg-clip-text text-transparent">
+                                Ai
                             </span>
                         )}
                     </div>
@@ -37,10 +49,10 @@ const Header = () => {
 
 
                 <nav className="absolute left-1/2 transform -translate-x-1/2 hidden md:flex space-x-24">
-                    <a href="#solutions" className="text-base font-medium text-gray-700 hover:text-blue-600">Solutions</a>
-                    <a href="#why-us" className="text-base font-medium text-gray-700 hover:text-blue-600">Why Us?</a>
-                    <a href="/team" className="text-base font-medium text-gray-700 hover:text-blue-600">Resources</a>
-                    <a href="/careers" target="_blank" className="text-base font-medium text-gray-700 hover:text-blue-600">Careers</a>
+                    <a href="/solutions" className="text-base font-medium text-gray-700 hover:text-blue-600 cursor-pointer">Solutions</a>
+                    <a href="/about" className="text-base font-medium text-gray-700 hover:text-blue-600 cursor-pointer">Why Us?</a>
+                    <a href="/team" className="text-base font-medium text-gray-700 hover:text-blue-600 cursor-pointer">Resources</a>
+                    <a href="/careers" target="_blank" className="text-base font-medium text-gray-700 hover:text-blue-600 cursor-pointer">Careers</a>
 
                 </nav>
 
@@ -67,12 +79,12 @@ const Header = () => {
                 <div className="md:hidden bg-white shadow-md">
                     <nav className="flex flex-col items-center space-y-4 py-4">
                         <a href="/" className="text-base font-medium text-gray-700 hover:text-blue-600">Home</a>
-                        <a href="#solutions" className="text-base font-medium text-gray-700 hover:text-blue-600">Solutions</a>
-                        <a href="#why-us" className="text-base font-medium text-gray-700 hover:text-blue-600">Why Us?</a>
+                        <a href="/solutions" className="text-base font-medium text-gray-700 hover:text-blue-600">Solutions</a>
+                        <a href="/about" className="text-base font-medium text-gray-700 hover:text-blue-600">Why Us?</a>
                         <a href="/team" className="text-base font-medium text-gray-700 hover:text-blue-600">Resources</a>
-                        <button className="mt-2 px-5 py-2 border border-blue-600 text-blue-600 rounded-md font-semibold hover:bg-blue-50 transition">
+                        <a href="/contact"><button className="px-5 py-2 border border-blue-600 text-blue-600 rounded-md font-semibold hover:bg-blue-50 transition">
                             Get Quote
-                        </button>
+                        </button></a>
                     </nav>
                 </div>
             )}

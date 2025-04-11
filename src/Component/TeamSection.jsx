@@ -39,21 +39,39 @@ export default function TeamSection() {
         <div className="bg-gradient-to-br from-[#ffffff] to-[#ffffff] py-24 mt-20 px-4 sm:px-6 lg:px-20 rounded-3xl">
             <div className="max-w-7xl mx-auto text-center">
                 <div className="inline-block px-3 py-1 text-xs font-semibold bg-[#e0f2fe] text-[#0f62fe] rounded-full mb-4">
-                    We’re Hiring!
+                    🔥 We’re Hiring!
                 </div>
                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#4A4A4A] leading-tight">
-             Let's Meet Our Team
-            </h2>
+                    Let's Meet Our Team
+                </h2>
                 <p className="text-[#6b7280] mb-8 max-w-2xl mx-auto">
                     Gravida in fermentum et sollicitudin ac orci phasellus egestas. Molestie a iaculis at erat pellentesque adipiscing commodo.
                 </p>
                 <div className="flex justify-center gap-4 mb-12">
-                    <button className="px-5 py-2 border border-gray-300 rounded-full font-medium text-[#111827] hover:bg-gray-100 transition">
-                        About Us
-                    </button>
-                    <a href="/careers"><button className="px-5 py-2 bg-[#0f62fe] text-white rounded-full font-medium hover:bg-[#0053d4] transition">
-                        Job Openings
-                    </button></a>
+                    <a href="/about">
+                        <button className="px-5 py-2 border border-gray-300 rounded-full font-medium text-[#111827] hover:bg-gray-100 transition flex items-center gap-2">
+                            <img
+                                width="24"
+                                height="24"
+                                src="https://img.icons8.com/sf-regular-filled/50/about.png"
+                                alt="about"
+                            />
+                            About Us
+                        </button>
+                    </a>
+
+                    <a href="/careers">
+                        <button className="px-5 py-2 bg-[#0f62fe] text-white rounded-full font-medium hover:bg-[#0053d4] transition flex items-center gap-2">
+                            <img
+                                width="16"
+                                height="16"
+                                src="https://img.icons8.com/ios-filled/50/FFFFFF/search--v1.png"
+                                alt="search"
+                            />
+                            Job Openings
+                        </button>
+                    </a>
+
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

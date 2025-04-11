@@ -11,16 +11,17 @@ const Team = () => {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#4A4A4A] leading-tight">
               Meet Our Team
             </h2>
-            <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed mb-6 sm:mb-8">
+            <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed mb-10 sm:mb-18">
               Need expert guidance or have a project in mind? Our management team is here to help.
               Whether you're looking for custom software solutions, AI-driven strategies, or digital
               transformation consulting, we’re ready to collaborate.
             </p>
-            <a href="/team" className="font-semibold text-base sm:text-lg">
+            <a href="/team" className="font-semibold text-base sm:text-lg mt-10 inline-block pt-2 sm:pt-4">
               <span className="text-lg sm:text-xl font-bold bg-gradient-to-r from-[#EDC4E4] via-[#6B00BE] to-[#D075DC] bg-clip-text text-transparent">
                 Get in Touch →
               </span>
             </a>
+
           </div>
 
           <div className="w-full md:w-1/2 flex flex-col items-center md:items-start">

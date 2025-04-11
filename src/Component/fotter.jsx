@@ -11,11 +11,11 @@ const Footer = () => {
                 </div>
 
                 <ul className="flex flex-col sm:flex-row gap-4 text-center font-semibold mb-6 md:mb-0">
-                    <li><a href="#" className="hover:text-purple-600">Home</a></li>
-                    <li><a href="#" className="hover:text-purple-600">Team</a></li>
-                    <li><a href="#" className="hover:text-purple-600">About Us</a></li>
+                    <li><a href="/" className="hover:text-purple-600">Home</a></li>
+                    <li><a href="/team" className="hover:text-purple-600">Team</a></li>
+                    <li><a href="/about" className="hover:text-purple-600">About Us</a></li>
                     <li><a href="/careers" className="hover:text-purple-600">Careers</a></li>
-                    <li><a href="#" className="hover:text-purple-600">Contact</a></li>
+                    <li><a href="contact" className="hover:text-purple-600">Contact</a></li>
                 </ul>
 
                 <div className="flex gap-4 text-2xl">
