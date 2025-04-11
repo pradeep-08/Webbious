@@ -16,7 +16,7 @@ const Team = () => {
               Whether you're looking for custom software solutions, AI-driven strategies, or digital
               transformation consulting, we’re ready to collaborate.
             </p>
-            <a href="#" className="font-semibold text-base sm:text-lg">
+            <a href="/team" className="font-semibold text-base sm:text-lg">
               <span className="text-lg sm:text-xl font-bold bg-gradient-to-r from-[#EDC4E4] via-[#6B00BE] to-[#D075DC] bg-clip-text text-transparent">
                 Get in Touch →
               </span>

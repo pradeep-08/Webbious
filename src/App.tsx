@@ -17,6 +17,7 @@ import Footer from "./Component/fotter";
 import CircleCursor from "./Component/cursor";
 import CareersPage from "./Component/Jobs";
 import "/App.css";
+import TeamSection from "./Component/team";
 
 function MainContent() {
   const [showTopNav, setShowTopNav] = useState(true);
@@ -70,9 +71,8 @@ function MainContent() {
       <CircleCursor />
 
       <nav
-        className={`transition-all duration-300 ${
-          showTopNav ? "opacity-100" : "opacity-0"
-        } pt-16`}
+        className={`transition-all duration-300 ${showTopNav ? "opacity-100" : "opacity-0"
+          } pt-16`}
       >
         <Header />
       </nav>
@@ -113,6 +113,16 @@ function CareersContent() {
     </div>
   );
 }
+function TeamsContent() {
+  return (
+    <div className="min-h-screen bg-white">
+      <CircleCursor />
+      <Header />
+      <TeamSection />
+      <Footer />
+    </div>
+  );
+}
 
 function App() {
   return (
@@ -120,6 +130,8 @@ function App() {
       <Routes>
         <Route path="/" element={<MainContent />} />
         <Route path="/careers" element={<CareersContent />} />
+        <Route path="/team" element={<TeamsContent />} />
+
       </Routes>
     </Router>
   );

@@ -177,7 +177,7 @@ export default function CareersPage() {
             <div className="absolute z-10 bg-white border border-gray-300 rounded shadow-md w-full max-w-md p-4">
               <div className="mb-3 text-sm font-medium text-gray-700">Experience</div>
               <div className="grid grid-cols-2 gap-2 mb-4">
-                {['0-1 year', '2-4 years', '3-5 years', '5+ years'].map((label) => (
+                {["0-1 year", "2-4 years", "3-5 years", "5+ years"].map((label) => (
                   <label key={label} className="flex items-center space-x-2">
                     <input
                       type="checkbox"
@@ -206,7 +206,7 @@ export default function CareersPage() {
                 <h3 className="text-lg font-medium">{job.title}</h3>
                 <p className="text-sm text-[#5f6368]">{job.location} – {job.type} – {job.experience}</p>
               </div>
-              <button onClick={() => setSelectedJob(job)} className="mt-2 md:mt-0 bg-black text-white px-4 py-2 rounded hover:bg-gray-800">Open job</button>
+              <button onClick={() => setSelectedJob(job)} className="mt-2 md:mt-0 bg-black text-white px-4 py-2 rounded hover:bg-gray-800">Apply now</button>
             </div>
           ))}
         </div>
@@ -221,11 +221,22 @@ export default function CareersPage() {
             >
               ×
             </button>
+
             <h3 className="text-2xl font-bold mb-2 text-[#1d1d1f]">{selectedJob.title}</h3>
             <p className="text-sm text-[#5f6368] mb-2">{selectedJob.location} – {selectedJob.type} – {selectedJob.experience}</p>
             <div className="text-sm text-[#3c4043] mb-4">{selectedJob.status}</div>
             <p className="mb-4 text-[#3c4043]">{selectedJob.description}</p>
-            <button className="mt-2 bg-[#0f9d58] text-white px-4 py-2 rounded hover:bg-[#0b7e46]">Apply now</button>
+            <div className="flex items-center gap-2 px-4 py-2 border border-red-300 text-red-600 rounded-full bg-red-50 w-max">
+              <div className="w-4 h-4 rounded-full border-2 border-dashed border-red-500 animate-spin"></div>
+              <span className="text-sm font-medium">We are facing an issue, our dev team is working on it.</span>
+            </div>
+            <div className="flex flex-col gap-4 mt-4">
+              <button className="bg-[#0f9d58] text-white px-4 py-2 rounded hover:bg-[#0b7e46]">
+                Apply now
+              </button>
+
+
+            </div>
           </div>
         </div>
       )}

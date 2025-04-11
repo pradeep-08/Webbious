@@ -4,8 +4,9 @@ import Logo from './img/fulLogo.png';
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
-    const location = useLocation(); 
+    const location = useLocation();
     const isCareersPage = location.pathname === '/careers';
+    const isTeamPage = location.pathname === '/team';
 
     return (
         <header className="fixed top-0 left-0 w-full bg-white text-black shadow-md z-50">
@@ -19,6 +20,11 @@ const Header = () => {
                                 JOBS
                             </span>
                         )}
+                        {isTeamPage && (
+                            <span className="text-lg font-bold bg-gradient-to-r from-[#EDC4E4] via-[#6B00BE] to-[#D075DC] bg-clip-text text-transparent">
+                                Resources
+                            </span>
+                        )}
                     </div>
                 </div>
 
@@ -27,7 +33,9 @@ const Header = () => {
                 <nav className="absolute left-1/2 transform -translate-x-1/2 hidden md:flex space-x-24">
                     <a href="#solutions" className="text-base font-medium text-gray-700 hover:text-blue-600">Solutions</a>
                     <a href="#why-us" className="text-base font-medium text-gray-700 hover:text-blue-600">Why Us?</a>
-                    <a href="#resources" className="text-base font-medium text-gray-700 hover:text-blue-600">Resources</a>
+                    <a href="/team" className="text-base font-medium text-gray-700 hover:text-blue-600">Resources</a>
+                    <a href="/careers" target="_blank" className="text-base font-medium text-gray-700 hover:text-blue-600">Careers</a>
+
                 </nav>
 
                 <div className="hidden md:block">
@@ -55,7 +63,7 @@ const Header = () => {
                         <a href="/" className="text-base font-medium text-gray-700 hover:text-blue-600">Home</a>
                         <a href="#solutions" className="text-base font-medium text-gray-700 hover:text-blue-600">Solutions</a>
                         <a href="#why-us" className="text-base font-medium text-gray-700 hover:text-blue-600">Why Us?</a>
-                        <a href="#resources" className="text-base font-medium text-gray-700 hover:text-blue-600">Resources</a>
+                        <a href="/team" className="text-base font-medium text-gray-700 hover:text-blue-600">Resources</a>
                         <button className="mt-2 px-5 py-2 border border-blue-600 text-blue-600 rounded-md font-semibold hover:bg-blue-50 transition">
                             Get Quote
                         </button>
