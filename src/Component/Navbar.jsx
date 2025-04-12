@@ -10,6 +10,7 @@ const Header = () => {
     const isContactPage = location.pathname === '/contact';
     const isAboutPage = location.pathname === '/about';
     const isSolutionPage = location.pathname === '/solutions';
+    const isPrjoectPage = location.pathname === '/projects';
 
     return (
         <header className="fixed top-0 left-0 w-full bg-white text-black shadow-md z-50">
@@ -43,6 +44,11 @@ const Header = () => {
                                 Ai
                             </span>
                         )}
+                        {isPrjoectPage && (
+                            <span className="text-lg font-bold bg-gradient-to-r from-[#EDC4E4] via-[#6B00BE] to-[#D075DC] bg-clip-text text-transparent">
+                                Projects
+                            </span>
+                        )}
                     </div>
                 </div>
 
@@ -67,6 +73,7 @@ const Header = () => {
                     >
                         Resources
                     </a>
+
                     <a
                         href="/careers"
                         className={`text-base font-medium ${location.pathname === '/careers' ? 'text-blue-600' : 'text-gray-700'} hover:text-blue-600`}
