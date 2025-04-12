@@ -49,12 +49,32 @@ const Header = () => {
 
 
                 <nav className="absolute left-1/2 transform -translate-x-1/2 hidden md:flex space-x-24">
-                    <a href="/solutions" className="text-base font-medium text-gray-700 hover:text-blue-600 cursor-pointer">Solutions</a>
-                    <a href="/about" className="text-base font-medium text-gray-700 hover:text-blue-600 cursor-pointer">Why Us?</a>
-                    <a href="/team" className="text-base font-medium text-gray-700 hover:text-blue-600 cursor-pointer">Resources</a>
-                    <a href="/careers" target="_blank" className="text-base font-medium text-gray-700 hover:text-blue-600 cursor-pointer">Careers</a>
-
+                    <a
+                        href="/solutions"
+                        className={`text-base font-medium ${location.pathname === '/solutions' ? 'text-blue-600' : 'text-gray-700'} hover:text-blue-600`}
+                    >
+                        Solutions
+                    </a>
+                    <a
+                        href="/about"
+                        className={`text-base font-medium ${location.pathname === '/about' ? 'text-blue-600' : 'text-gray-700'} hover:text-blue-600`}
+                    >
+                        Why Us?
+                    </a>
+                    <a
+                        href="/team"
+                        className={`text-base font-medium ${location.pathname === '/team' ? 'text-blue-600' : 'text-gray-700'} hover:text-blue-600`}
+                    >
+                        Resources
+                    </a>
+                    <a
+                        href="/careers"
+                        className={`text-base font-medium ${location.pathname === '/careers' ? 'text-blue-600' : 'text-gray-700'} hover:text-blue-600`}
+                    >
+                        Careers
+                    </a>
                 </nav>
+
 
                 <div className="hidden md:block">
                     <a href="/contact"><button className="px-5 py-2 border border-blue-600 text-blue-600 rounded-md font-semibold hover:bg-blue-50 transition">
@@ -82,6 +102,7 @@ const Header = () => {
                         <a href="/solutions" className="text-base font-medium text-gray-700 hover:text-blue-600">Solutions</a>
                         <a href="/about" className="text-base font-medium text-gray-700 hover:text-blue-600">Why Us?</a>
                         <a href="/team" className="text-base font-medium text-gray-700 hover:text-blue-600">Resources</a>
+                        <a href="/careers" className="text-base font-medium text-gray-700 hover:text-blue-600">Jobs</a>
                         <a href="/contact"><button className="px-5 py-2 border border-blue-600 text-blue-600 rounded-md font-semibold hover:bg-blue-50 transition">
                             Get Quote
                         </button></a>

@@ -47,7 +47,7 @@ const solutions = [
 
 const SolutionsSection = () => {
     return (
-        <section className="bg-gray-100 py-16 px-4 sm:px-6 lg:px-8">
+        <section className="bg-gray-100 py-16 px-4 pt-32 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
                 <h2 className="text-3xl font-extrabold text-gray-900 mb-12 text-center">
                     Our Solutions
@@ -92,9 +92,10 @@ const SolutionsSection = () => {
                                         {solution.title}
                                     </h3>
                                     <p className="text-sm mb-4">{solution.description}</p>
-                                    <button className="bg-white text-black px-4 py-2 rounded hover:bg-gray-200 transition">
+                                    <a href="/contact"> <button className="bg-white text-black px-4 py-2 rounded hover:bg-gray-200 transition">
                                         Contact Us
-                                    </button>
+                                    </button></a>
+
                                 </div>
                             </div>
                         </div>

@@ -22,6 +22,7 @@ import "/App.css";
 import ContactUsCard from "./Component/Contact";
 import AboutUs from "./Component/AboutUs";
 import SolutionsSection from "./Component/Solutions";
+import ProjectsSection from "./Component/OurProjects";
 
 function MainContent() {
   const [showTopNav, setShowTopNav] = useState(true);
@@ -167,6 +168,17 @@ function Solutions() {
   );
 }
 
+function ProjectSec() {
+  return (
+    <div className="min-h-screen bg-white">
+      <CircleCursor />
+      <Header />
+      <ProjectsSection />
+      <Footer />
+    </div>
+  );
+}
+
 
 function App() {
   return (
@@ -178,6 +190,7 @@ function App() {
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/about" element={<AboutUsSection />} />
         <Route path="/solutions" element={<Solutions />} />
+        <Route path="/projects" element={<ProjectSec />} />
       </Routes>
     </Router>
   );

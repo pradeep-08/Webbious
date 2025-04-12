@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const team = [
     {
@@ -9,13 +9,13 @@ const team = [
     },
     {
         name: "Muthu",
-        role: "Cheif Operating Officer (COO)",
+        role: "Chief Operating Officer (COO)",
         desc: "Ensures smooth daily operations and aligns teams with the company's goals.",
         image: "https://ui-avatars.com/api/?name=Muthu&background=ccc&color=fff&rounded=true",
     },
     {
         name: "Naveen",
-        role: "Cheif Techinal Officer (CTO)",
+        role: "Chief Technical Officer (CTO)",
         desc: "Leads the tech roadmap and oversees the engineering and product innovation.",
         image: "https://ui-avatars.com/api/?name=Naveen&background=ccc&color=fff&rounded=true",
     },
@@ -33,8 +33,21 @@ const team = [
     },
 ];
 
-
 export default function TeamSection() {
+    const [isApplyNow, setIsApplyNow] = useState(false);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setIsApplyNow((prev) => !prev);
+        }, 3000);
+        return () => clearInterval(interval);
+    }, []);
+
+    const buttonText = isApplyNow ? "Apply Now" : "Job Openings";
+    const buttonIcon = isApplyNow
+        ? "https://img.icons8.com/ios-filled/50/FFFFFF/nui2.png"
+        : "https://img.icons8.com/ios-filled/50/FFFFFF/search--v1.png";
+
     return (
         <div className="bg-gradient-to-br from-[#ffffff] to-[#ffffff] py-24 mt-20 px-4 sm:px-6 lg:px-20 rounded-3xl">
             <div className="max-w-7xl mx-auto text-center">
@@ -45,8 +58,9 @@ export default function TeamSection() {
                     Let's Meet Our Team
                 </h2>
                 <p className="text-[#6b7280] mb-8 max-w-2xl mx-auto">
-                    Gravida in fermentum et sollicitudin ac orci phasellus egestas. Molestie a iaculis at erat pellentesque adipiscing commodo.
+                    Meet the passionate team behind our innovation—driven by expertise, creativity, and a shared mission to deliver impactful solutions.
                 </p>
+
                 <div className="flex justify-center gap-4 mb-12">
                     <a href="/about">
                         <button className="px-5 py-2 border border-gray-300 rounded-full font-medium text-[#111827] hover:bg-gray-100 transition flex items-center gap-2">
@@ -62,16 +76,10 @@ export default function TeamSection() {
 
                     <a href="/careers">
                         <button className="px-5 py-2 bg-[#0f62fe] text-white rounded-full font-medium hover:bg-[#0053d4] transition flex items-center gap-2">
-                            <img
-                                width="16"
-                                height="16"
-                                src="https://img.icons8.com/ios-filled/50/FFFFFF/search--v1.png"
-                                alt="search"
-                            />
-                            Job Openings
+                            <img width="16" height="16" src={buttonIcon} alt="button-icon" />
+                            {buttonText}
                         </button>
                     </a>
-
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -107,6 +115,35 @@ export default function TeamSection() {
                                     </svg>
                                 </a>
                             </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Perks & Benefits Section */}
+            <div className="mt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
+                <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 text-center mb-6">Perks and Benefits</h2>
+                <p className="text-center text-gray-600 max-w-3xl mx-auto mb-12">
+                    Our remote-first culture is built on flexibility, wellness, and growth. We offer top-tier benefits designed to support productivity, work-life balance, and long-term career success in a dynamic, inclusive environment.
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+                    {[
+                        { title: "WORK FROM ANYWHERE", desc: "Enjoy the freedom of remote work with our fully distributed team model." },
+                        { title: "HEALTH & WELLNESS", desc: "Comprehensive health insurance and mental wellness support for you and your family." },
+                        { title: "FITNESS REWARDS", desc: "Stay active with monthly reimbursements for gym memberships or fitness apps." },
+                        { title: "CUTTING-EDGE TOOLS", desc: "We equip you with the latest MacBook and premium productivity tools." },
+                        { title: "GENEROUS PAID TIME OFF", desc: "Take time to recharge with 22+ vacation days and official holidays every year." },
+                        { title: "LEARNING & DEVELOPMENT", desc: "Get reimbursed for courses, certifications, and conferences to boost your skills." },
+                        { title: "FAMILY SUPPORT", desc: "Paid parental leave and flexible schedules for new and growing families." },
+                        { title: "REMOTE WORK STIPENDS", desc: "Monthly budgets for home office setup, internet, and coffee runs." },
+                        { title: "RETIREMENT SAVINGS", desc: "Contribute to 401(k) or RRSP with matching options to secure your future." },
+                        { title: "SOCIAL IMPACT DAYS", desc: "Get paid time off to volunteer or support causes you're passionate about." },
+                        { title: "TEAM RETREATS", desc: "Meet in person at annual off-sites to collaborate, innovate, and celebrate wins." }
+                    ].map((perk, i) => (
+                        <div key={i} className="bg-white p-5 rounded-xl shadow border border-gray-100 hover:shadow-md transition">
+                            <h3 className="text-sm font-semibold uppercase text-indigo-600 mb-2">{perk.title}</h3>
+                            <p className="text-gray-600 text-sm">{perk.desc}</p>
                         </div>
                     ))}
                 </div>

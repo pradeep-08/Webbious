@@ -51,7 +51,7 @@ const Projects = () => {
             data-driven marketing, and custom software to help businesses scale,
             automate, and grow in a fast-evolving digital world.
           </p>
-          <a href="#" className="font-semibold text-lg sm:text-base">
+          <a href="/projects" className="font-semibold text-lg sm:text-base">
             <span className="text-xl font-bold bg-gradient-to-r from-[#EDC4E4] via-[#6B00BE] to-[#D075DC] bg-clip-text text-transparent">
               Explore our work →
             </span>
