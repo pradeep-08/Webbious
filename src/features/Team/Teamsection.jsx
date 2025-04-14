@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import muthu from "../../assets/images/muthu.jpeg"
+import naveen from "../../assets/images/naveen.jpeg"
 
 const team = [
     {
@@ -11,13 +13,13 @@ const team = [
         name: "Muthu",
         role: "Chief Operating Officer (COO)",
         desc: "Ensures smooth daily operations and aligns teams with the company's goals.",
-        image: "https://ui-avatars.com/api/?name=Muthu&background=ccc&color=fff&rounded=true",
+        image: muthu,
     },
     {
         name: "Naveen",
         role: "Chief Technical Officer (CTO)",
         desc: "Leads the tech roadmap and oversees the engineering and product innovation.",
-        image: "https://ui-avatars.com/api/?name=Naveen&background=ccc&color=fff&rounded=true",
+        image: naveen,
     },
     {
         name: "Rajesh",

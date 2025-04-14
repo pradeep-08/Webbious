@@ -178,7 +178,6 @@ const jobs = [
 ];
 
 
-
 const typingWords = ["experience", "talent", "skills", "ideas"];
 
 export default function CareersPage() {
@@ -208,7 +207,7 @@ export default function CareersPage() {
           setWordIndex((wordIndex + 1) % typingWords.length);
           setCharIndex(0);
         }, 1500);
-        return () => clearTimeout(timeout);
+        return () => clearTimeout(timeout);       
       }
     }
   }, [charIndex, wordIndex]);

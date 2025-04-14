@@ -5,24 +5,25 @@ import {
   Route,
   useLocation,
 } from "react-router-dom";
-import Header from "./Component/Navbar";
-import Hero from "./Component/Hero";
-import AICard from "./Component/AI Card";
-import AnimatePage from "./Component/Iconpage";
-import PricingPage from "./Component/PricingCard";
-import Projects from "./Component/Project";
-import Team from "./Component/MeetourTeam";
-import Footer from "./Component/fotter";
-import CircleCursor from "./Component/cursor";
-import CareersPage from "./Component/Jobs";
-import TeamSection from "./Component/TeamSection";
-import ContactUsMain from "./Component/ContactUsMain";
+
 
 import "/App.css";
-import ContactUsCard from "./Component/Contact";
-import AboutUs from "./Component/AboutUs";
-import SolutionsSection from "./Component/Solutions";
-import ProjectsSection from "./Component/OurProjects";
+import CircleCursor from "./components/ui/cursor";
+import Header from "./components/layout/Navbar";
+import Hero from "./features/Home/Hero";
+import AICard from "./features/AI/AI Card";
+import Projects from "./features/Projects/Project";
+import Team from "./features/Team/MeetourTeam";
+import ContactUsCard from "./features/Contact/Contact";
+import Footer from "./components/layout/fotter";
+import CareersPage from "./features/Careers/Jobs";
+import TeamSection from "./features/Team/Teamsection";
+import PricingPage from "./features/Home/PricingCard";
+import AnimatePage from "./features/Home/Iconpage";
+import SolutionsSection from "./features/Home/Solutions";
+import AboutUs from "./features/About/AboutUs";
+import ContactUsMain from "./features/Contact/ContactUsMain";
+import ProjectsSection from "./features/Projects/OurProjects";
 
 function MainContent() {
   const [showTopNav, setShowTopNav] = useState(true);

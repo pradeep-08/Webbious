@@ -1,6 +1,6 @@
 import React from "react";
-import ContactI from "./img/contact.jpg";
-import ContactU from "./img/contacts.jpg";
+import ContactU from "../../assets/images/contacts.jpg"
+import ContactI from "../../assets/images/contact.jpg"
 
 const ContactUsCard = () => {
     return (

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import Logo from './img/fulLogo.png';
+import Logo from '../../assets/images/fulLogo.png'; 
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaFacebookF, FaXTwitter, FaInstagram, FaLinkedinIn, FaWhatsapp } from 'react-icons/fa6';
-import logo from "./img/TeckStack/logo.png"
+import logo from "../../assets/images/TeckStack/logo.png"
 const Footer = () => {
     return (
         <footer className="bg-gray-100 text-black pt-10 pb-4">

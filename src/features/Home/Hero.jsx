@@ -1,12 +1,11 @@
 import React from 'react';
 import { TypeAnimation } from 'react-type-animation';
-import officeImage from "./img/heroImage.png";
-import UnderLine from "./img/underLine.png"
+import officeImage from "../../assets/images/heroImage.png";
+import UnderLine from "../../assets/images/underLine.png"
 
 export default function Hero() {
   return (
     <div className="relative min-h-[75vh] bg-white overflow-hidden">
-      {/* Image Content as background */}
       <div className="absolute right-0 top-0 h-full w-full lg:w-1/2 md:w-2/3 sm:w-full z-0">
         <img
           src={officeImage}
@@ -45,16 +44,9 @@ export default function Hero() {
                   Solutions
                 </span>
                 <span className="text-white sm:text-blue-600">.</span>
-                {/* Underline effect */}
                 <img src={UnderLine} alt="Logo" className="h-[15px] mt-5 w-auto hidden md:block" />
               </span>
             </h1>
-
-            {/* <div className="mt-8 sm:mt-5">
-              <a href="/contact" target="_blank"><button className="border mt-10  text-white sm:text-blue-600 sm:border-blue-600 px-6 py-3  rounded-md font-medium transition-all duration-300">
-                Grow Your Business Now
-              </button></a>
-            </div> */}
             <div className="mt-20 flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4">
               <a href="/contact" target="_blank" rel="noopener noreferrer">
                 <button className="flex items-center px-5 py-2 bg-white text-black rounded-full shadow hover:bg-gray-800 transition sm:bg-black sm:border sm:border-black sm:text-white">

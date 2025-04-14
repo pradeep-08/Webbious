@@ -1,6 +1,7 @@
 import React from "react";
-import Meet from "./img/MeetOurTeam.jpg";
-import HiringBg from "./img/Hiring.jpg";
+import Meet from "../../assets/images/MeetOurTeam.jpg";
+import HiringBg from "../../assets/images/Hiring.jpg";
+
 
 const Team = () => {
   return (

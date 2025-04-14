@@ -1,5 +1,3 @@
-import js from "../Component/img/TeckStack/js.png"
-import node from './img/TeckStack/js.png'
 import React, { useState, useEffect } from 'react';
 
 
