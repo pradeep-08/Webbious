@@ -55,16 +55,30 @@ export default function Hero() {
                 Grow Your Business Now
               </button></a>
             </div> */}
-    <div className="mt-20 flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4 ">
+            <div className="mt-20 flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4">
               <a href="/contact" target="_blank" rel="noopener noreferrer">
-                <button className="flex items-center px-5 py-3 bg-white text-black rounded-full shadow hover:bg-gray-800 transition sm:bg-black sm:border sm:border-black sm:text-white">
-                  <span className="bg-white  sm:bg-white rounded-full p-1 mr-5 sm:p-1 sm:mr-5">
-                    <img width="20" height="20" src="https://img.icons8.com/material-outlined/24/000000/lightning-bolt--v1.png" alt="lightning-bolt--v1" />
+                <button className="flex items-center px-5 py-2 bg-white text-black rounded-full shadow hover:bg-gray-800 transition sm:bg-black sm:border sm:border-black sm:text-white">
+                  <span className="p-2 sm:p-2 mr-4 sm:mr-5 rounded-full bg-black sm:bg-white ">
+                    <img
+                      width="24"
+                      height="24"
+                      className="block sm:hidden invert" // icon white in mobile
+                      src="https://img.icons8.com/material-outlined/24/000000/lightning-bolt--v1.png"
+                      alt="lightning-bolt"
+                    />
+                    <img
+                      width="24"
+                      height="24"
+                      className="hidden sm:block" // icon black in desktop
+                      src="https://img.icons8.com/material-outlined/24/000000/lightning-bolt--v1.png"
+                      alt="lightning-bolt"
+                    />
                   </span>
-                 <span className='font-bold'> Start To Grow</span>
+                  <span className="sm:font-bold">Start To Grow</span>
                 </button>
               </a>
-              </div>
+            </div>
+
           </div>
         </div>
       </div>
