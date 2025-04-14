@@ -50,12 +50,21 @@ export default function Hero() {
               </span>
             </h1>
 
-            <div className="mt-8 sm:mt-5">
+            {/* <div className="mt-8 sm:mt-5">
               <a href="/contact" target="_blank"><button className="border mt-10  text-white sm:text-blue-600 sm:border-blue-600 px-6 py-3  rounded-md font-medium transition-all duration-300">
                 Grow Your Business Now
               </button></a>
-            </div>
-
+            </div> */}
+    <div className="mt-20 flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4 ">
+              <a href="/contact" target="_blank" rel="noopener noreferrer">
+                <button className="flex items-center px-5 py-3 bg-white text-black rounded-full shadow hover:bg-gray-800 transition sm:bg-black sm:border sm:border-black sm:text-white">
+                  <span className="bg-white  sm:bg-white rounded-full p-1 mr-5 sm:p-1 sm:mr-5">
+                    <img width="20" height="20" src="https://img.icons8.com/material-outlined/24/000000/lightning-bolt--v1.png" alt="lightning-bolt--v1" />
+                  </span>
+                 <span className='font-bold'> Start To Grow</span>
+                </button>
+              </a>
+              </div>
           </div>
         </div>
       </div>
