@@ -17,6 +17,12 @@ const CircleCursor = () => {
       const x = e.clientX;
       const y = e.clientY;
 
+      // If screen width is below 1024px (tablet & mobile), don't move or show cursor
+      if (window.innerWidth <= 1024) {
+        cursor.style.display = 'none';
+        return;
+      }
+
       cursor.style.left = `${x}px`;
       cursor.style.top = `${y}px`;
 
@@ -27,7 +33,7 @@ const CircleCursor = () => {
         const isTypingField = ['input', 'textarea'].includes(tagName) || element.isContentEditable;
 
         if (computedCursor === 'pointer' || isTypingField) {
-          cursor.style.display = 'none'; // Hide for inputs, buttons, etc.
+          cursor.style.display = 'none';
         } else {
           cursor.style.display = 'block';
 
@@ -50,16 +56,19 @@ const CircleCursor = () => {
     <>
       <div
         ref={cursorRef}
-        className="circle-cursor hidden sm:block"
+        className="circle-cursor"
       ></div>
 
       <style>{`
-        @media (max-width: 767px) {
+        @media (max-width: 1024px) {
           html, body {
             cursor: auto !important;
           }
+          .circle-cursor {
+            display: none !important;
+          }
         }
-        @media (min-width: 768px) {
+        @media (min-width: 1025px) {
           html, body {
             cursor: none !important;
           }
