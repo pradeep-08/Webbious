@@ -8,7 +8,7 @@ const ContactUsCard = () => {
             <div className="bg-white p-4 sm:p-6 md:p-10 rounded-2xl shadow-[0px_1px_18px_-3px_rgba(0,_0,_0,_0.1)] w-full max-w-4xl flex flex-col md:flex-row">
 
                 <div className="w-full md:w-1/2 md:pr-8 mb-6 md:mb-0">
-                    <h1 className="text-3xl sm:text-3xl font-bold text-purple-600 mb-4">Contact our team</h1>
+                    <h2 className="text-3xl sm:text-3xl font-bold text-purple-600 mb-4">Contact our team</h2>
                     <p className="text-gray-600 mb-4 sm:mb-6">
                         Have questions about our product or scaling your business? We're here for you!
                         Chat with our team <span className="text-purple-600 font-bold">24/7</span> and get onboard in just 5 minutes.
