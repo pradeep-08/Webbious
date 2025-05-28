@@ -15,7 +15,6 @@ const AICard = () => {
         </p>
       </div>
 
-      {/* Cards Grid */}
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-6 gap-4 p-4 md:h-[700px]">
         {/* AI-Powered Web Development */}
         <div className="md:col-span-2 bg-purple-100 p-4 md:p-6 rounded-2xl shadow flex items-center justify-center text-center hover:shadow-xl transition-shadow duration-300">
