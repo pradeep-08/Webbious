@@ -1,5 +1,12 @@
 {
   "projects": {
     "default": "webbious"
+  },
+  "targets": {
+    "webbious": {
+      "hosting": {
+        "www.webbious.firebaseapp.com": ["webbious"]
+      }
+    }
   }
 }
