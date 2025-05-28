@@ -5,8 +5,11 @@
   "targets": {
     "webbious": {
       "hosting": {
-        "www": ["webbious"]
+        "www": [
+          "webbious"
+        ]
       }
     }
-  }
+  },
+  "etags": {}
 }
