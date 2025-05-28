@@ -1,15 +1,29 @@
 {
   "hosting": {
+    "target": "www.webbious.firebaseapp.com",
     "public": "dist",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
-    "rewrites": [
+    "headers": [
+      {
+        "source": "**/*.@(jpg|jpeg|gif|png|webp|svg)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=31536000, immutable"
+          }
+        ]
+      }
+    ],
+    "rewrites": [],
+    "redirects": [
       {
         "source": "**",
-        "destination": "/index.html"
+        "destination": "https://www.webbious.firebaseapp.com",
+        "type": 301
       }
     ]
   }
