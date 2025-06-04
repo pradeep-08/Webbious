@@ -45,10 +45,17 @@ const Projects = () => {
             data-driven marketing, and custom software to help businesses scale,
             automate, and grow in a fast-evolving digital world.
           </p>
-          <a href="/projects" className="font-semibold text-lg sm:text-base">
-            <span className="text-xl font-bold bg-gradient-to-r from-[#EDC4E4] via-[#6B00BE] to-[#D075DC] bg-clip-text text-transparent">
+          {/* <a href="/projects" className="btn-shine font-semibold text-lg sm:text-base">
+            <span className="text-xl font-bold bg-transparent ">
               Explore our work →
             </span>
+          </a> */}
+          <a
+            href="/projects"
+            rel="noopener noreferrer"
+            className="btn-shine bg-black  transform -translate-x-1/2 -translate-y-1/2 px-6 py-3 text-black text-lg no-underline whitespace-nowrap"
+          >
+            Get early access →
           </a>
 
         </div>
@@ -77,6 +84,7 @@ const Projects = () => {
 
 
       `}</style>
+
     </div>
   );
 };

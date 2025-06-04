@@ -19,3 +19,26 @@ export default {
   },
   plugins: [],
 };
+
+// tailwind.config.js
+module.exports = {
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+  ],
+  theme: {
+    extend: {
+      keyframes: {
+        shine: {
+          '0%': { backgroundPosition: '0' },
+          '60%': { backgroundPosition: '180px' },
+          '100%': { backgroundPosition: '180px' },
+        },
+      },
+      animation: {
+        shine: 'shine 3s linear infinite forwards',
+      },
+    },
+  },
+  plugins: [],
+}
+

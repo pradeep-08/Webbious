@@ -1,3 +1,24 @@
 body {
     font-family: 'Figtree', sans-serif;
   }
+
+.btn-shine {
+  background: linear-gradient(to right, #4d4d4d 0%, white 10%, #4d4d4d 20%);
+  background-size: 200% auto;
+  background-position: 0;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation-fill-mode: forwards;
+  color: transparent;
+  animation: shine 3s linear infinite;
+  font-weight: 600;
+}
+
+@keyframes shine {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
