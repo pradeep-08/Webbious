@@ -2,6 +2,7 @@ import React from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import officeImage from "../../assets/images/heroImage.png";
 import UnderLine from "../../assets/images/underLine.png"
+import { AiFillThunderbolt } from "react-icons/ai";
 
 export default function Hero() {
   return (
@@ -49,9 +50,9 @@ export default function Hero() {
             </h1>
             <div className="mt-20 flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4">
               <a href="/contact" target="_blank" rel="noopener noreferrer">
-                <button className="flex items-center px-5 py-2 bg-white text-black rounded-full shadow hover:bg-gray-800 transition sm:bg-black sm:border sm:border-black sm:text-white">
+                <button className="flex items-center px-5 py-2 bg-black text-white rounded-full shadow hover:bg-gray-800 transition sm:bg-black sm:border sm:border-black sm:text-white">
                   <span className="p-2 sm:p-2 mr-4 sm:mr-5 rounded-full bg-black sm:bg-white ">
-                    <img
+                    {/* <img
                       width="24"
                       height="24"
                       className="block sm:hidden invert" // icon white in mobile
@@ -64,9 +65,13 @@ export default function Hero() {
                       className="hidden sm:block" // icon black in desktop
                       src="https://img.icons8.com/material-outlined/24/000000/lightning-bolt--v1.png"
                       alt="lightning-bolt"
-                    />
+                    /> */}<span className='width-24 height-24 bg-white text-black'><AiFillThunderbolt /></span>
+
                   </span>
-                  <span className="sm:font-bold">Start To Grow</span>
+                  <span className="sm:font-bold text-transparent bg-clip-text animate-shine bg-gradient-to-r from-white via-blue-600 to-white">
+                    Start To Grow
+                  </span>
+
                 </button>
               </a>
             </div>

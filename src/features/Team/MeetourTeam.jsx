@@ -17,11 +17,20 @@ const Team = () => {
               Whether you're looking for custom software solutions, AI-driven strategies, or digital
               transformation consulting, we’re ready to collaborate.
             </p>
-            <a href="/team" className="font-semibold text-base sm:text-lg mt-10 inline-block pt-2 sm:pt-4">
+            {/* <a href="/team" className="font-semibold text-base sm:text-lg mt-10 inline-block pt-2 sm:pt-4">
               <span className="text-lg sm:text-xl font-bold bg-gradient-to-r from-[#EDC4E4] via-[#6B00BE] to-[#D075DC] bg-clip-text text-transparent">
                 Get in Touch →
               </span>
+            </a> */}
+
+            <a
+              href="/team"
+              rel="noopener noreferrer"
+              className="btn-shine text-lg px-6 py-3 inline-block"
+            >
+              Get in Touch →
             </a>
+
 
           </div>
 

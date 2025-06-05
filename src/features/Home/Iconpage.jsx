@@ -95,14 +95,22 @@ const AnimatePage = () => {
           </div>
           <div className="absolute inset-0 flex justify-center items-center">
             <div className="text-black text-xl sm:text-2xl font-semibold transition-all duration-500 transform opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-105">
-              <a
+              {/* <a
                 href="/contact"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="pointer-events-auto"
               >
                 Contact our Team →
-              </a>
+              </a> */}
+                 <a
+              href="/contact"
+              rel="noopener noreferrer"
+              className="btn-shine text-lg px-6 py-3 inline-block"
+            >
+             Contact our Team →
+            </a>
+
             </div>
           </div>
 
