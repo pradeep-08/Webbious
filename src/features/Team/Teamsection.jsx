@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import muthu from "../../assets/images/muthu.jpeg"
 import naveen from "../../assets/images/naveen.jpeg"
+import { FaSearch } from "react-icons/fa";
+import { PiHandTapBold } from "react-icons/pi";
+import { TiInfoLarge } from "react-icons/ti";
+
 
 const team = [
     {
@@ -47,8 +51,8 @@ export default function TeamSection() {
 
     const buttonText = isApplyNow ? "Apply Now" : "Job Openings";
     const buttonIcon = isApplyNow
-        ? "https://img.icons8.com/ios-filled/50/FFFFFF/nui2.png"
-        : "https://img.icons8.com/ios-filled/50/FFFFFF/search--v1.png";
+        ? <PiHandTapBold />
+        : <FaSearch />;
 
     return (
         <div className="bg-gradient-to-br from-[#ffffff] to-[#ffffff] py-24 mt-20 px-4 sm:px-6 lg:px-20 rounded-3xl">
@@ -64,21 +68,31 @@ export default function TeamSection() {
                 </p>
 
                 <div className="flex justify-center gap-4 mb-12">
-                    <a href="/about">
+                    {/* <a href="/about">
                         <button className="px-5 py-2 border border-gray-300 rounded-full font-medium text-[#111827] hover:bg-gray-100 transition flex items-center gap-2">
-                            <img
+                             <img
                                 width="24"
                                 height="24"
                                 src="https://img.icons8.com/sf-regular-filled/50/about.png"
                                 alt="about"
-                            />
+                            /> 
+                            <TiInfoLarge />
+
+                            About Us
+                        </button>
+                    </a> */}
+                    <a href="/about">
+                        <button className="px-5 py-2 border border-gray-300 rounded-full font-medium text-[#111827] hover:bg-gray-100 transition flex items-center gap-2">
+                            <span className="text-lg"><TiInfoLarge /></span>
                             About Us
                         </button>
                     </a>
 
                     <a href="/careers">
                         <button className="px-5 py-2 bg-[#0f62fe] text-white rounded-full font-medium hover:bg-[#0053d4] transition flex items-center gap-2">
-                            <img width="16" height="16" src={buttonIcon} alt="button-icon" />
+                            {/* <img width="16" height="16" src={buttonIcon} alt="button-icon" /> */}
+                            <span className="text-white text-sm">{buttonIcon}</span>
+
                             {buttonText}
                         </button>
                     </a>

@@ -66,9 +66,12 @@ export default function Hero() {
                       src="https://img.icons8.com/material-outlined/24/000000/lightning-bolt--v1.png"
                       alt="lightning-bolt"
                     /> */}<span className='width-24 height-24 bg-white text-black'><AiFillThunderbolt /></span>
-                   
+
                   </span>
-                  <span className="sm:font-bold btn-shine text-white"> Start To Grow</span>
+                  <span className="sm:font-bold text-transparent bg-clip-text animate-shine bg-gradient-to-r from-white via-blue-600 to-white">
+                    Start To Grow
+                  </span>
+
                 </button>
               </a>
             </div>
