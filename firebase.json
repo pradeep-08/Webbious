@@ -24,13 +24,7 @@
         "destination": "/index.html"
       }
     ],
-   "redirects": [
-  {
-    "source": "/",
-    "destination": "https://webbious.com",
-    "type": 301
-  }
-]
+   "redirects": []
 
   }
 }
