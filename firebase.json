@@ -1,6 +1,5 @@
 {
   "hosting": {
-    "target": "www",
     "public": "dist",
     "ignore": [
       "firebase.json",
@@ -9,11 +8,20 @@
     ],
     "headers": [
       {
-        "source": "**/*.@(jpg|jpeg|gif|png|webp|svg)",
+        "source": "**/*.@(jpg|jpeg|png|gif|svg|webp)",
         "headers": [
           {
             "key": "Cache-Control",
-            "value": "public, max-age=31536000, immutable"
+            "value": "public,max-age=31536000"
+          }
+        ]
+      },
+      {
+        "source": "**/*.@(js|css)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public,max-age=2592000"
           }
         ]
       }
@@ -22,14 +30,6 @@
       {
         "source": "**",
         "destination": "/index.html"
-      }
-    ],
-    "redirects": [
-      {
-        "source": "**",
-        "destination": "https://webbious.com",
-        "type": 301,
-        "function": "redirectWWW"
       }
     ]
   }
