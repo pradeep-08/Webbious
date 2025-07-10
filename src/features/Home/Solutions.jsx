@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Helmet } from "react-helmet-async";
 const solutions = [
     {
         title: 'Web Development',
@@ -47,62 +47,89 @@ const solutions = [
 
 const SolutionsSection = () => {
     return (
-        <section className="bg-gray-100 py-16 px-4 pt-32 sm:px-6 lg:px-8">
-            <div className="max-w-7xl mx-auto">
-                <h2 className="text-3xl font-extrabold text-gray-900 mb-12 text-center">
-                    Our Solutions
-                </h2>
-                <div className="grid gap-8 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
-                    {solutions.map((solution, index) => (
-                        <div
-                            key={index}
-                            className="relative group rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
-                        >
-                            {/* Base Layer */}
-                            <div className="bg-white relative z-10 transition-opacity duration-300 group-hover:opacity-0">
-                                <img
-                                    className="h-48 w-full object-cover"
-                                    src={solution.imageUrl}
-                                    alt={solution.title}
-                                />
-                                <div className="p-6">
-                                    <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                                        {solution.title}
-                                    </h3>
-                                    <p className="text-gray-600">{solution.description}</p>
+        <>
+            <Helmet>
+                <title>Solutions We Offer | Webbious Services</title>
+                <meta name="description" content="We provide full-stack development, AI services, digital transformation, and scalable cloud solutions." />
+                <link rel="canonical" href="https://webbious.com/solutions" />
+                <meta name="keywords" content="Custom software solutions, AI development services, full-stack web development, cloud-based platforms, SaaS applications, enterprise tech solutions" />
+                <meta property="og:title" content="Solutions by Webbious" />
+                <meta property="og:description" content="Explore how we help businesses solve problems with technology." />
+                <script type="application/ld+json">{`
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Solutions",
+      "url": "https://webbious.com/solutions",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://webbious.com" },
+          { "@type": "ListItem", "position": 2, "name": "Solutions", "item": "https://webbious.com/solutions" }
+        ]
+      }
+    }
+  `}</script>
+            </Helmet>
 
-                                    {/* Mobile Contact Button */}
-                                    <div className="mt-4 md:hidden">
-                                        <button className="w-full bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition">
+            <section className="bg-gray-100 py-16 px-4 pt-32 sm:px-6 lg:px-8">
+                <div className="max-w-7xl mx-auto">
+                    <h2 className="text-3xl font-extrabold text-gray-900 mb-12 text-center">
+                        Our Solutions
+                    </h2>
+                    <div className="grid gap-8 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
+                        {solutions.map((solution, index) => (
+                            <div
+                                key={index}
+                                className="relative group rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
+                            >
+                                {/* Base Layer */}
+                                <div className="bg-white relative z-10 transition-opacity duration-300 group-hover:opacity-0">
+                                    <img
+                                        className="h-48 w-full object-cover"
+                                        src={solution.imageUrl}
+                                        alt={solution.title}
+                                    />
+                                    <div className="p-6">
+                                        <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                                            {solution.title}
+                                        </h3>
+                                        <p className="text-gray-600">{solution.description}</p>
+
+                                        {/* Mobile Contact Button */}
+                                        <div className="mt-4 md:hidden">
+                                            <button className="w-full bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition">
+                                                Contact Us
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Hover Overlay for Desktop */}
+                                <div className="absolute inset-0 z-20 opacity-0 group-hover:opacity-100 transition duration-300 hidden md:block">
+                                    <img
+                                        src={solution.imageUrl}
+                                        alt={solution.title}
+                                        className="w-full h-full object-cover blur-sm"
+                                    />
+                                    <div className="absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-center items-center text-white text-center px-6">
+                                        <h3 className="text-2xl font-semibold mb-2">
+                                            {solution.title}
+                                        </h3>
+                                        <p className="text-sm mb-4">{solution.description}</p>
+                                        <a href="/contact"> <button className="bg-white text-black px-4 py-2 rounded hover:bg-gray-200 transition">
                                             Contact Us
-                                        </button>
+                                        </button></a>
+
                                     </div>
                                 </div>
                             </div>
-
-                            {/* Hover Overlay for Desktop */}
-                            <div className="absolute inset-0 z-20 opacity-0 group-hover:opacity-100 transition duration-300 hidden md:block">
-                                <img
-                                    src={solution.imageUrl}
-                                    alt={solution.title}
-                                    className="w-full h-full object-cover blur-sm"
-                                />
-                                <div className="absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-center items-center text-white text-center px-6">
-                                    <h3 className="text-2xl font-semibold mb-2">
-                                        {solution.title}
-                                    </h3>
-                                    <p className="text-sm mb-4">{solution.description}</p>
-                                    <a href="/contact"> <button className="bg-white text-black px-4 py-2 rounded hover:bg-gray-200 transition">
-                                        Contact Us
-                                    </button></a>
-
-                                </div>
-                            </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </>
+
     );
 };
 
