@@ -2,43 +2,82 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Webbious</title>
-    <!-- meta description -->
-    <meta name="description"
-        content="Webbious offers top-tier web development, responsive design, and modern front-end solutions powered by Firebase. Build your digital presence today!">
-    <!-- meta description -->
-    <!-- canonical -->
-    <link rel="canonical" href="https://www.webbious.firebaseapp.com/">
-    <!-- canonical -->
-    <!-- fevicon -->
-    <link rel="shortcut icon" href="/logo.png" type="image/x-icon">
-    <!-- fevicon -->
-    <link rel="alternate" hreflang="en" href="https://www.webbious.firebaseapp.com/en/" />
-    <link rel="alternate" hreflang="fr" href="https://www.webbious.firebaseapp.com/fr/" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Webbious</title>
 
-    <meta name="robots" content="index, follow">
+  <!-- Meta Description -->
+  <meta name="description"
+    content="Webbious offers top-tier web development, responsive design, and modern front-end solutions powered by Firebase. Build your digital presence today!">
 
-    <!-- Open Graph Meta tags  -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Webbious — Software Company" />
-    <meta property="og:description"
-        content="Webbious offers top-tier web development, responsive design, and modern front-end solutions powered by Firebase.">
-    <meta property="og:url" content="https://webbious.firebaseapp.com/">
-    <!-- open Graph Meta Tags -->
+  <!-- Canonical -->
+  <link rel="canonical" href="https://webbious.firebaseapp.com/" />
 
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/logo.png" type="image/x-icon" />
+
+  <!-- Language alternates -->
+  <link rel="alternate" hreflang="en" href="https://webbious.firebaseapp.com/en/" />
+  <link rel="alternate" hreflang="fr" href="https://webbious.firebaseapp.com/fr/" />
+
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Webbious — Software Company" />
+  <meta property="og:description"
+    content="Webbious offers top-tier web development, responsive design, and modern front-end solutions powered by Firebase." />
+  <meta property="og:url" content="https://webbious.firebaseapp.com/" />
+  <meta property="og:image" content="https://webbious.firebaseapp.com/logo.png" />
+
+  <!-- ✅ Organization Schema (helps Google show 'Webbious – Software company') -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Webbious",
+    "alternateName": "Webbious Software Company",
+    "url": "https://webbious.firebaseapp.com/",
+    "logo": "https://webbious.firebaseapp.com/logo.png",
+    "founder": {
+      "@type": "Person",
+      "name": "Pradeep",
+      "jobTitle": "Founder"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/company/webbious",
+      "https://www.instagram.com/webbious",
+      "https://github.com/pradeep-08/Webbious"
+    ],
+    "description": "Webbious is a software development company specializing in web apps, mobile apps, and digital marketing solutions. We deliver modern, scalable, and user-focused software for global clients.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Chennai",
+      "addressRegion": "Tamil Nadu",
+      "addressCountry": "India"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer support",
+      "email": "info@webbious.com",
+      "availableLanguage": "English"
+    }
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Inter:wght@100..900&display=swap"
+    rel="stylesheet" />
 </head>
 
 <body class="bg-gray-100">
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-    <script src="./Schema.js"></script>
+  <div id="root"></div>
+
+  <!-- React + Vite main script -->
+  <script type="module" src="/src/main.tsx"></script>
 </body>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-    href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Inter:wght@100..900&display=swap"
-    rel="stylesheet">
 
 </html>
