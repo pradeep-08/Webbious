@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import muthu from "../../assets/images/muthu.jpeg";
 import naveen from "../../assets/images/naveen.jpeg";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaLinkedinIn, FaEnvelope } from "react-icons/fa";
 import { PiHandTapBold } from "react-icons/pi";
 import { TiInfoLarge } from "react-icons/ti";
 import { Helmet } from "react-helmet-async";
@@ -66,10 +66,6 @@ export default function TeamSection() {
           content="Meet our creative and technical minds. At Webbious, our people drive our success."
         />
         <link rel="canonical" href="https://webbious.com/team" />
-        <meta
-          name="keywords"
-          content="Webbious team, CEO of Webbious, CTO of Webbious, Chief Architect Webbious, software development team"
-        />
       </Helmet>
 
       <div className="bg-gradient-to-br from-[#ffffff] to-[#ffffff] py-24 mt-20 px-4 sm:px-6 lg:px-20 rounded-3xl">
@@ -102,11 +98,12 @@ export default function TeamSection() {
             </a>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* TEAM GRID */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 place-items-center">
             {team.map((member, index) => (
               <div
                 key={index}
-                className="bg-[#f8f9fa] p-6 rounded-[28px] text-center border border-[#f1f3f4] hover:shadow-md transition"
+                className="bg-[#f8f9fa] p-6 rounded-[28px] text-center border border-[#f1f3f4] hover:shadow-md transition w-full max-w-[280px]"
               >
                 <img
                   src={member.image}
@@ -126,7 +123,8 @@ export default function TeamSection() {
                   {member.desc}
                 </p>
 
-                <div className="flex justify-center gap-5 text-[#5f6368] text-xl">
+                {/* SOCIAL ICONS */}
+                <div className="flex justify-center gap-6 text-[#5f6368] text-lg">
                   <a
                     href={member.linkedin}
                     target="_blank"
@@ -134,11 +132,15 @@ export default function TeamSection() {
                     aria-label={`${member.name} LinkedIn`}
                     className="hover:text-[#0A66C2] transition"
                   >
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M16 8a6 6 0 016 6v6h-3v-6a3 3 0 00-6 0v6h-3v-6a6 6 0 016-6z" />
-                      <path d="M2 9h3v12H2z" />
-                      <circle cx="3.5" cy="4.5" r="1.5" />
-                    </svg>
+                    <FaLinkedinIn />
+                  </a>
+
+                  <a
+                    href="mailto:contact@webbious.com"
+                    aria-label={`${member.name} Email`}
+                    className="hover:text-[#EA4335] transition"
+                  >
+                    <FaEnvelope />
                   </a>
                 </div>
               </div>
@@ -146,7 +148,7 @@ export default function TeamSection() {
           </div>
         </div>
 
-        {/* Perks & Benefits Section */}
+        {/* PERKS & BENEFITS */}
         <div className="mt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 text-center mb-6">
             Perks and Benefits
@@ -168,9 +170,12 @@ export default function TeamSection() {
               { title: "REMOTE WORK STIPENDS", desc: "Home office and internet support." },
               { title: "RETIREMENT SAVINGS", desc: "401(k) or RRSP matching options." },
               { title: "SOCIAL IMPACT DAYS", desc: "Paid time to volunteer." },
-              { title: "TEAM RETREATS", desc: "Annual off-sites to collaborate and celebrate." }
+              { title: "TEAM RETREATS", desc: "Annual off-sites to collaborate and celebrate." },
             ].map((perk, i) => (
-              <div key={i} className="bg-white p-5 rounded-xl shadow border border-gray-100">
+              <div
+                key={i}
+                className="bg-white p-5 rounded-xl shadow border border-gray-100 hover:shadow-md transition"
+              >
                 <h3 className="text-sm font-semibold uppercase text-indigo-600 mb-2">
                   {perk.title}
                 </h3>
