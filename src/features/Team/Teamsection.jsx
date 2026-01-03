@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import muthu from "../../assets/images/muthu.jpeg"
-import naveen from "../../assets/images/naveen.jpeg"
+import muthu from "../../assets/images/muthu.jpeg";
+import naveen from "../../assets/images/naveen.jpeg";
 import { FaSearch } from "react-icons/fa";
 import { PiHandTapBold } from "react-icons/pi";
 import { TiInfoLarge } from "react-icons/ti";
@@ -134,11 +134,7 @@ export default function TeamSection() {
                     aria-label={`${member.name} LinkedIn`}
                     className="hover:text-[#0A66C2] transition"
                   >
-                    <svg
-                      className="w-5 h-5"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M16 8a6 6 0 016 6v6h-3v-6a3 3 0 00-6 0v6h-3v-6a6 6 0 016-6z" />
                       <path d="M2 9h3v12H2z" />
                       <circle cx="3.5" cy="4.5" r="1.5" />
@@ -149,42 +145,41 @@ export default function TeamSection() {
             ))}
           </div>
         </div>
+
+        {/* Perks & Benefits Section */}
+        <div className="mt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 text-center mb-6">
+            Perks and Benefits
+          </h2>
+
+          <p className="text-center text-gray-600 max-w-3xl mx-auto mb-12">
+            Our remote-first culture is built on flexibility, wellness, and growth.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+            {[
+              { title: "WORK FROM ANYWHERE", desc: "Enjoy the freedom of remote work with our fully distributed team model." },
+              { title: "HEALTH & WELLNESS", desc: "Comprehensive health insurance and mental wellness support." },
+              { title: "FITNESS REWARDS", desc: "Monthly reimbursements for gym memberships or fitness apps." },
+              { title: "CUTTING-EDGE TOOLS", desc: "Latest MacBook and premium productivity tools." },
+              { title: "GENEROUS PAID TIME OFF", desc: "22+ vacation days and official holidays." },
+              { title: "LEARNING & DEVELOPMENT", desc: "Reimbursement for courses and certifications." },
+              { title: "FAMILY SUPPORT", desc: "Paid parental leave and flexible schedules." },
+              { title: "REMOTE WORK STIPENDS", desc: "Home office and internet support." },
+              { title: "RETIREMENT SAVINGS", desc: "401(k) or RRSP matching options." },
+              { title: "SOCIAL IMPACT DAYS", desc: "Paid time to volunteer." },
+              { title: "TEAM RETREATS", desc: "Annual off-sites to collaborate and celebrate." }
+            ].map((perk, i) => (
+              <div key={i} className="bg-white p-5 rounded-xl shadow border border-gray-100">
+                <h3 className="text-sm font-semibold uppercase text-indigo-600 mb-2">
+                  {perk.title}
+                </h3>
+                <p className="text-gray-600 text-sm">{perk.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </>
   );
-}
-
-
-                {/* Perks & Benefits Section */}
-                <div className="mt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
-                    <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 text-center mb-6">Perks and Benefits</h2>
-                    <p className="text-center text-gray-600 max-w-3xl mx-auto mb-12">
-                        Our remote-first culture is built on flexibility, wellness, and growth. We offer top-tier benefits designed to support productivity, work-life balance, and long-term career success in a dynamic, inclusive environment.
-                    </p>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-                        {[
-                            { title: "WORK FROM ANYWHERE", desc: "Enjoy the freedom of remote work with our fully distributed team model." },
-                            { title: "HEALTH & WELLNESS", desc: "Comprehensive health insurance and mental wellness support for you and your family." },
-                            { title: "FITNESS REWARDS", desc: "Stay active with monthly reimbursements for gym memberships or fitness apps." },
-                            { title: "CUTTING-EDGE TOOLS", desc: "We equip you with the latest MacBook and premium productivity tools." },
-                            { title: "GENEROUS PAID TIME OFF", desc: "Take time to recharge with 22+ vacation days and official holidays every year." },
-                            { title: "LEARNING & DEVELOPMENT", desc: "Get reimbursed for courses, certifications, and conferences to boost your skills." },
-                            { title: "FAMILY SUPPORT", desc: "Paid parental leave and flexible schedules for new and growing families." },
-                            { title: "REMOTE WORK STIPENDS", desc: "Monthly budgets for home office setup, internet, and coffee runs." },
-                            { title: "RETIREMENT SAVINGS", desc: "Contribute to 401(k) or RRSP with matching options to secure your future." },
-                            { title: "SOCIAL IMPACT DAYS", desc: "Get paid time off to volunteer or support causes you're passionate about." },
-                            { title: "TEAM RETREATS", desc: "Meet in person at annual off-sites to collaborate, innovate, and celebrate wins." }
-                        ].map((perk, i) => (
-                            <div key={i} className="bg-white p-5 rounded-xl shadow border border-gray-100 hover:shadow-md transition">
-                                <h3 className="text-sm font-semibold uppercase text-indigo-600 mb-2">{perk.title}</h3>
-                                <p className="text-gray-600 text-sm">{perk.desc}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
-        </>
-
-    );
 }
