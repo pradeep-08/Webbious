@@ -856,6 +856,8 @@ export default function QuestionPageAi() {
     const [processingState, setProcessingState] = useState(null);
     const [logs, setLogs] = useState([]);
     const [viewStateData, setViewStateData] = useState(null);
+    const [showAiPreview, setShowAiPreview] = useState(false);
+
 
     const subjectName = subjectMap[subjectCode] || "Unknown Subject";
 
@@ -1188,9 +1190,10 @@ export default function QuestionPageAi() {
                                 </div>
                             </div>
 
-
                             {/* RIGHT PANEL */}
-                            <div className="relative rounded-2xl border border-slate-200 bg-white p-6 flex flex-col justify-between shadow-sm">
+                            <div className="relative rounded-2xl border border-slate-200 bg-white p-6 flex flex-col justify-between shadow-sm overflow-hidden">
+
+                                {/* Header */}
                                 <div>
                                     <div className="flex items-center justify-between mb-4">
                                         <span className="text-xs font-semibold tracking-wide text-blue-700 bg-blue-50 px-3 py-1 rounded-full">
@@ -1201,26 +1204,56 @@ export default function QuestionPageAi() {
                                         </span>
                                     </div>
 
-                                    <div className="rounded-xl border border-slate-200 bg-slate-50 p-5 text-center">
-                                        <p className="text-sm font-semibold text-slate-800 mb-1">
-                                            AI Generated Assistance
-                                        </p>
-                                        <p className="text-xs text-slate-500 leading-relaxed">
-                                            Our AI helps analyze and organize
-                                            available question papers. Bulk
-                                            download and smart insights will be
-                                            enabled soon.
-                                        </p>
+                                    {/* Document Image + Blur Layer */}
+                                    <div className="relative rounded-xl border border-slate-200 bg-slate-50 h-[400px] overflow-hidden flex items-center justify-center">
+
+                                        {/* Background document icon */}
+                                        <img
+                                            src="https://cdn-icons-png.flaticon.com/512/337/337946.png"
+                                            alt="Document preview"
+                                            className="absolute inset-0 m-auto w-24 opacity-15 rounded-xl"
+                                        />
+
+                                        {/* Blurred content wrapper (FULL FIT) */}
+                                        <div
+                                            className={`absolute inset-0 flex flex-col rounded-xl items-center justify-center text-center px-6 transition-all duration-300 ${showAiPreview ? "backdrop-blur-0" : "backdrop-blur-sm"
+                                                }`}
+                                        >
+                                            <p
+                                                className={`text-sm font-semibold text-slate-800 mb-1 transition ${showAiPreview ? "blur-0" : "blur-sm"
+                                                    }`}
+                                            >
+                                                AI Generated Assistance
+                                            </p>
+
+                                            <p
+                                                className={`text-xs text-slate-500 leading-relaxed transition ${showAiPreview ? "blur-0" : "blur-sm"
+                                                    }`}
+                                            >
+                                                Our AI helps analyze and organize available question papers.
+                                                Bulk download and smart insights will be enabled soon.
+                                            </p>
+
+                                            {!showAiPreview && (
+                                                <p className="mt-3 text-xs font-medium text-slate-600">
+                                                    Click download to preview AI insights
+                                                </p>
+                                            )}
+                                        </div>
                                     </div>
+
                                 </div>
 
+                                {/* CTA */}
                                 <button
-                                    disabled
-                                    className="mt-6 w-full rounded-xl bg-slate-200 py-3 text-sm font-semibold text-slate-600 cursor-not-allowed"
+                                    type="button"
+                                    onClick={() => setShowAiPreview(true)}
+                                    className="mt-6 w-full rounded-xl bg-slate-200 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-300 transition"
                                 >
                                     Download (Coming Soon)
                                 </button>
                             </div>
+
                         </div>
                     </>
                 )}
