@@ -27,6 +27,8 @@ import ProjectsSection from "./features/Projects/OurProjects";
 import QuestionAiPage from "./features/QuestionAI/QuestionAIpage";
 
 
+
+
 function MainContent() {
   const [showTopNav, setShowTopNav] = useState(true);
   const [showBottomNav, setShowBottomNav] = useState(false);
@@ -183,7 +185,7 @@ function ProjectSec() {
 }
 function QuestionAI() {
   return (
-    <div className="min-h-screen bg-white">   
+    <div className="min-h-screen bg-white">
       <CircleCursor />
       <Header />
       <QuestionAiPage />
