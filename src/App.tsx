@@ -24,6 +24,8 @@ import SolutionsSection from "./features/Home/Solutions";
 import AboutUs from "./features/About/AboutUs";
 import ContactUsMain from "./features/Contact/ContactUsMain";
 import ProjectsSection from "./features/Projects/OurProjects";
+import QuestionAiPage from "./features/QuestionAI/QuestionAIpage";
+
 
 function MainContent() {
   const [showTopNav, setShowTopNav] = useState(true);
@@ -179,6 +181,16 @@ function ProjectSec() {
     </div>
   );
 }
+function QuestionAI() {
+  return (
+    <div className="min-h-screen bg-white">   
+      <CircleCursor />
+      <Header />
+      <QuestionAiPage />
+      <Footer />
+    </div>
+  );
+}
 
 
 function App() {
@@ -192,6 +204,7 @@ function App() {
         <Route path="/about" element={<AboutUsSection />} />
         <Route path="/solutions" element={<Solutions />} />
         <Route path="/projects" element={<ProjectSec />} />
+        <Route path="/questionai" element={<QuestionAI />} />
       </Routes>
     </Router>
   );

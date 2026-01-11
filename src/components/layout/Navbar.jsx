@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import Logo from '../../assets/images/fulLogo.png'; 
+import Logo from '../../assets/images/fulLogo.png';
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -11,6 +11,7 @@ const Header = () => {
     const isAboutPage = location.pathname === '/about';
     const isSolutionPage = location.pathname === '/solutions';
     const isPrjoectPage = location.pathname === '/projects';
+    const isQuestionAI = location.pathname === '/questionai';
 
     return (
         <header className="fixed top-0 left-0 w-full bg-white text-black shadow-md z-50">
@@ -49,12 +50,17 @@ const Header = () => {
                                 Projects
                             </span>
                         )}
+                        {isQuestionAI && (
+                            <span className="text-lg font-bold bg-gradient-to-r from-[#EDC4E4] via-[#6B00BE] to-[#D075DC] bg-clip-text text-transparent">
+                               AI
+                            </span>
+                        )}
                     </div>
                 </div>
 
 
 
-                <nav className="absolute left-1/2 transform -translate-x-1/2 hidden md:flex space-x-24">
+                <nav className="absolute left-1/2 transform -translate-x-1/2 hidden md:flex space-x-20">
                     <a
                         href="/solutions"
                         className={`text-base font-medium ${location.pathname === '/solutions' ? 'text-blue-600' : 'text-gray-700'} hover:text-blue-600`}
@@ -79,6 +85,12 @@ const Header = () => {
                         className={`text-base font-medium ${location.pathname === '/careers' ? 'text-blue-600' : 'text-gray-700'} hover:text-blue-600`}
                     >
                         Careers
+                    </a>
+                    <a
+                        href="/questionai"
+                        className={`text-base font-medium ${location.pathname === '/questionai' ? 'text-blue-600' : 'text-gray-700'} hover:text-blue-600`}
+                    >
+                        AI ✨
                     </a>
                 </nav>
 
