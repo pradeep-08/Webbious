@@ -24,7 +24,7 @@ import SolutionsSection from "./features/Home/Solutions";
 import AboutUs from "./features/About/AboutUs";
 import ContactUsMain from "./features/Contact/ContactUsMain";
 import ProjectsSection from "./features/Projects/OurProjects";
-import QuestionAiPage from "./features/QuestionAI/QuestionAIpage";
+import QuestionAiPage from "./features/QuestionAI/QuestionPageAi";
 
 
 
