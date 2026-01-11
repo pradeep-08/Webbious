@@ -122,6 +122,7 @@ const Header = () => {
                         <a href="/about" className="text-base font-medium text-gray-700 hover:text-blue-600">Why Us?</a>
                         <a href="/team" className="text-base font-medium text-gray-700 hover:text-blue-600">Resources</a>
                         <a href="/careers" className="text-base font-medium text-gray-700 hover:text-blue-600">Jobs</a>
+                        <a href="/questionai" className="text-base font-medium text-gray-700 hover:text-blue-600">AI ✨</a>
                         <a href="/contact"><button className="px-5 py-2 border border-blue-600 text-blue-600 rounded-md font-semibold hover:bg-blue-50 transition">
                             Get Quote
                         </button></a>
