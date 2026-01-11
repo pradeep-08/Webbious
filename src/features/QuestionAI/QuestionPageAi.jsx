@@ -1080,9 +1080,21 @@ export default function QuestionPageAi() {
                         disabled={loading}
                         className="bg-blue-600 text-white px-6 rounded-lg font-semibold"
                     >
-                        {loading ? "..." : "Go"}
+                        {loading ? "..." : "Search"}
                     </button>
                 </form>
+
+                {!loading && results.length === 0 && (
+                    <div className="mt-8 rounded-xl border border-slate-200 bg-slate-50 p-8 text-center">
+                        <p className="text-sm font-medium text-slate-700">
+                            Question papers are currently not available
+                        </p>
+                        <p className="mt-2 text-xs text-slate-500">
+                            Please try again later or check the subject code.
+                        </p>
+                    </div>
+                )}
+
 
                 {results.length > 0 && (
                     <>
@@ -1159,7 +1171,7 @@ export default function QuestionPageAi() {
                                     {results.map((item) => (
                                         <div key={item.id} className="p-4 flex items-center justify-between">
                                             <div>
-                                              
+
                                                 <p className="text-sm font-medium text-slate-800">
                                                     {item.monthYear}
                                                 </p>

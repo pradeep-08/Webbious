@@ -52,7 +52,7 @@ const Header = () => {
                         )}
                         {isQuestionAI && (
                             <span className="text-lg font-bold bg-gradient-to-r from-[#EDC4E4] via-[#6B00BE] to-[#D075DC] bg-clip-text text-transparent">
-                               AI
+                               beta
                             </span>
                         )}
                     </div>
