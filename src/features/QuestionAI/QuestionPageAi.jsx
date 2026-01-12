@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import toast, { Toaster } from 'react-hot-toast';
 import { UniversityService, AiService } from '../../services/qpService';
 
@@ -29,13 +29,63 @@ const subjectMap = {
 };
 
 export default function QuestionPageAi() {
-    const [subjectCode, setSubjectCode] = useState("UCC6A");
+    const [subjectCode, setSubjectCode] = useState("");
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(false);
     const [processingState, setProcessingState] = useState(null);
     const [logs, setLogs] = useState([]);
     const [viewStateData, setViewStateData] = useState(null);
     const [showAiPreview, setShowAiPreview] = useState(false);
+    const [aiStage, setAiStage] = useState("idle");
+    const [errorMessage, setErrorMessage] = useState(null);
+
+
+    const handleAiDownload = async () => {
+        if (aiStage !== "idle") return;
+
+        setAiLoading(true);
+        setAiStage("thinking");
+        addLog(`AI is analyzing ${subjectCode}...`);
+
+        try {
+            // UX delay → thinking
+            await new Promise(res => setTimeout(res, 1800));
+            setAiStage("generating");
+            addLog("Generating AI insights...");
+
+            // 🔽 ORIGINAL LOGIC (UNCHANGED) 🔽
+            const blob = await AiService.downloadInsight(subjectCode);
+
+            // UX delay → ready
+            await new Promise(res => setTimeout(res, 1200));
+            setAiStage("ready");
+
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.setAttribute("download", `${subjectCode}_AI_Insight.pdf`);
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            window.URL.revokeObjectURL(url);
+
+            addLog("AI Insights downloaded successfully.", "success");
+
+        } catch (error) {
+            console.error(error);
+            addLog(error.message, "error");
+            setAiStage("idle");
+        } finally {
+            setAiLoading(false);
+        }
+    };
+
+
+    useEffect(() => {
+        if (aiStage === "ready") {
+            setTimeout(() => setAiStage("idle"), 4000);
+        }
+    }, [aiStage]);
 
 
     const [downloadingId, setDownloadingId] = useState(null);
@@ -56,17 +106,16 @@ export default function QuestionPageAi() {
         setLogs([]);
         setResults([]);
         setViewStateData(null);
+        setErrorMessage(null); // ✅ reset error
 
         try {
             addLog("Connecting to server...");
 
-            // Use UniversityService for search
             const htmlData = await UniversityService.search(subjectCode);
 
             const parser = new DOMParser();
             const resultDoc = parser.parseFromString(htmlData, "text/html");
 
-            // Extract ViewState for subsequent downloads
             const vs = resultDoc.getElementById("__VIEWSTATE")?.value;
             const vsg = resultDoc.getElementById("__VIEWSTATEGENERATOR")?.value;
             const ev = resultDoc.getElementById("__EVENTVALIDATION")?.value;
@@ -78,7 +127,9 @@ export default function QuestionPageAi() {
             });
 
             const table = resultDoc.getElementById("GrdView");
-            if (!table) throw new Error("No results found or invalid subject code.");
+            if (!table) {
+                throw new Error("No question papers found for this subject code.");
+            }
 
             const rows = Array.from(table.querySelectorAll("tr")).slice(1);
 
@@ -97,18 +148,24 @@ export default function QuestionPageAi() {
                 })
                 .filter(Boolean);
 
-            if (parsed.length === 0) throw new Error("No papers found for this subject.");
+            if (parsed.length === 0) {
+                throw new Error("No question papers available for this subject.");
+            }
 
             setResults(parsed);
             addLog(`Found ${parsed.length} papers.`, "success");
+
         } catch (err) {
             console.error(err);
-            addLog(err.message || "Failed to fetch papers", "error");
+            const msg = err.message || "Failed to fetch question papers.";
+            setErrorMessage(msg);          // ✅ set error for UI
+            addLog(msg, "error");
         } finally {
             setLoading(false);
             setProcessingState(null);
         }
     };
+
 
     const downloadPaper = async (item) => {
         try {
@@ -207,27 +264,7 @@ export default function QuestionPageAi() {
     /* --- AI INSIGHTS --- */
     const [aiLoading, setAiLoading] = useState(false);
 
-    const handleAiDownload = async () => {
-        setAiLoading(true);
-        addLog(`Generating AI Insights for ${subjectCode}...`);
-        try {
-            const blob = await AiService.downloadInsight(subjectCode);
-            const url = window.URL.createObjectURL(blob);
-            const link = document.createElement("a");
-            link.href = url;
-            link.setAttribute("download", `${subjectCode}_AI_Insight.pdf`);
-            document.body.appendChild(link);
-            link.click();
-            link.remove();
-            window.URL.revokeObjectURL(url);
-            addLog("AI Insights downloaded successfully.", "success");
-        } catch (error) {
-            console.error(error);
-            addLog(error.message, "error");
-        } finally {
-            setAiLoading(false);
-        }
-    };
+
     return (
         <div className="w-full pt-24 px-4">
             <Toaster position="top-right" />
@@ -248,7 +285,7 @@ export default function QuestionPageAi() {
                     </p>
 
                     <div className="mt-4 rounded-lg bg-yellow-50 border border-yellow-200 p-3 text-xs text-yellow-800 text-center">
-                        Disclaimer: This is an independent student-support tool.
+                        Disclaimer: An independent student assistance platform, <strong>not affiliated</strong> with the any university.
                     </div>
 
                     <div className="my-8 border-t" />
@@ -256,18 +293,36 @@ export default function QuestionPageAi() {
                     <form onSubmit={fetchQuestionPapers} className="flex gap-4 mb-6">
                         <input
                             value={subjectCode}
-                            onChange={(e) => setSubjectCode(e.target.value.toUpperCase())}
+                            onChange={(e) => {
+                                const value = e.target.value.toUpperCase().slice(0, 5);
+                                setSubjectCode(value);
+                            }}
+                            maxLength={5}
                             className="flex-1 border rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500"
                             placeholder="Example: UCC6A"
-                            disabled={loading && processingState === 'searching'}
+                            disabled={loading && processingState === "searching"}
+                            required
                         />
+
+
                         <button
-                            disabled={loading && processingState === 'searching'}
-                            className="bg-blue-600 text-white px-6 rounded-lg font-semibold disabled:bg-blue-400"
+                            disabled={
+                                subjectCode.length !== 5 ||
+                                (loading && processingState === "searching")
+                            }
+                            className="bg-blue-600 text-white px-6 rounded-lg font-semibold
+               disabled:bg-blue-400 disabled:cursor-not-allowed"
                         >
-                            {loading && processingState === 'searching' ? "Searching..." : "Search"}
+                            {loading && processingState === "searching" ? "Searching..." : "Search"}
                         </button>
+
                     </form>
+                    {subjectCode.length > 0 && subjectCode.length < 5 && (
+                        <p className="mt-1 text-xs text-red-500">
+                            Subject code must be exactly 5 characters
+                        </p>
+                    )}
+
 
                     {loading && processingState === 'searching' && (
                         <div className="mt-8 rounded-xl border border-blue-100 bg-blue-50 p-8 text-center animate-pulse">
@@ -281,13 +336,20 @@ export default function QuestionPageAi() {
                     {!loading && results.length === 0 && !processingState && (
                         <div className="mt-8 rounded-xl border border-slate-200 bg-slate-50 p-8 text-center">
                             <p className="text-sm font-medium text-slate-700">
-                                Question papers are currently not available
+                                {errorMessage
+                                    ? "Unable to fetch question papers"
+                                    : "Enter a subject code to get question papers"}
                             </p>
+
                             <p className="mt-2 text-xs text-slate-500">
-                                Please try again later or check the subject code.
+                                {errorMessage
+                                    ? errorMessage
+                                    : "Type the subject code above and click search to view available papers."}
                             </p>
                         </div>
                     )}
+
+
 
                     {results.length > 0 && (
                         <>
@@ -348,12 +410,31 @@ export default function QuestionPageAi() {
                                             <span className="text-xs font-semibold tracking-wide text-blue-700 bg-blue-50 px-3 py-1 rounded-full">AI ASSISTED</span>
                                             <span className="text-xs text-slate-400">Beta</span>
                                         </div>
-                                        <div className="relative rounded-xl border border-slate-200 bg-slate-50 h-[220px] overflow-hidden flex items-center justify-center">
+                                        <div className="relative rounded-xl border border-slate-200 bg-slate-50 h-[400px] overflow-hidden flex items-center justify-center">
                                             <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="doc" className="w-20 opacity-20" />
-                                            <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 backdrop-blur-[1px]">
-                                                <p className="text-sm font-semibold text-slate-800">AI Exam Insights</p>
-                                                <p className="text-xs text-slate-500 mt-1 max-w-[200px]">
-                                                    Get a smart summary and syllabus breakdown for {subjectCode}.
+
+                                            <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 backdrop-blur-[2px]">
+
+                                                {(aiStage === "thinking" || aiStage === "generating") && (
+                                                    <div className="flex gap-1 mb-3">
+                                                        <span className="w-2 h-2 bg-blue-500 rounded-full animate-bounce [animation-delay:-0.3s]" />
+                                                        <span className="w-2 h-2 bg-blue-500 rounded-full animate-bounce [animation-delay:-0.15s]" />
+                                                        <span className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" />
+                                                    </div>
+                                                )}
+
+                                                <p className="text-sm font-semibold text-slate-800">
+                                                    {aiStage === "idle" && "AI Exam Insights"}
+                                                    {aiStage === "thinking" && "AI is thinking..."}
+                                                    {aiStage === "generating" && "Generating insights..."}
+                                                    {aiStage === "ready" && "Insights Ready!"}
+                                                </p>
+
+                                                <p className="text-xs text-slate-500 mt-2 max-w-[220px]">
+                                                    {aiStage === "idle" && `Get a smart summary and syllabus breakdown for ${subjectCode}.`}
+                                                    {aiStage === "thinking" && "Analyzing previous exam patterns."}
+                                                    {aiStage === "generating" && "Preparing important questions & summaries."}
+                                                    {aiStage === "ready" && "Your AI-generated insights are ready to download."}
                                                 </p>
                                             </div>
                                         </div>
@@ -361,23 +442,24 @@ export default function QuestionPageAi() {
 
                                     <button
                                         onClick={handleAiDownload}
-                                        disabled={aiLoading}
-                                        className={`mt-4 w-full rounded-xl py-3 text-sm font-semibold transition flex items-center justify-center gap-2 ${aiLoading
-                                            ? "bg-slate-100 text-slate-400 cursor-wait"
-                                            : "bg-slate-800 text-white hover:bg-slate-900 shadow-lg shadow-slate-200"
-                                            }`}
+                                        disabled={aiStage === "thinking" || aiStage === "generating"}
+                                        className={`mt-6 w-full rounded-xl py-3 text-sm font-semibold transition-all flex items-center justify-center gap-2
+        ${aiStage === "idle" &&
+                                            "bg-slate-800 text-white hover:bg-slate-900 shadow-lg shadow-slate-200"
+                                            }
+        ${(aiStage === "thinking" || aiStage === "generating") &&
+                                            "bg-slate-100 text-slate-400 cursor-wait"
+                                            }
+        ${aiStage === "ready" &&
+                                            "bg-blue-600 text-white hover:bg-blue-700 shadow-lg shadow-blue-200 animate-pulse"
+                                            }
+    `}
                                     >
-                                        {aiLoading ? (
-                                            <>
-                                                <span className="h-4 w-4 border-2 border-slate-400 border-t-slate-600 rounded-full animate-spin"></span>
-                                                <span>Analyzing...</span>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <span>✨ Download Insights</span>
-                                            </>
-                                        )}
+                                        {aiStage === "idle" && "Generate Insights"}
+                                        {(aiStage === "thinking" || aiStage === "generating") && "AI Working..."}
+                                        {aiStage === "ready" && "Downloaded"}
                                     </button>
+
                                 </div>
                             </div>
                         </>
