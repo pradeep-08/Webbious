@@ -26,6 +26,8 @@ const subjectMap = {
     UCC6C: "Software Testing",
     UEC6A: "Multimedia Systems",
     UVE6A: "Value Education",
+    UEB1A: "English I",
+    UEB2A: "English II",
 };
 
 export default function QuestionPageAi() {
@@ -38,6 +40,10 @@ export default function QuestionPageAi() {
     const [showAiPreview, setShowAiPreview] = useState(false);
     const [aiStage, setAiStage] = useState("idle");
     const [errorMessage, setErrorMessage] = useState(null);
+    const [hasScrolled, setHasScrolled] = useState(false);
+    const [aiNotAvailable, setAiNotAvailable] = useState(false);
+
+
 
 
     const handleAiDownload = async () => {
@@ -45,6 +51,7 @@ export default function QuestionPageAi() {
 
         setAiLoading(true);
         setAiStage("thinking");
+        setAiNotAvailable(false);
         addLog(`AI is analyzing ${subjectCode}...`);
 
         try {
@@ -53,8 +60,15 @@ export default function QuestionPageAi() {
             setAiStage("generating");
             addLog("Generating AI insights...");
 
-            // 🔽 ORIGINAL LOGIC (UNCHANGED) 🔽
             const blob = await AiService.downloadInsight(subjectCode);
+
+            // ❗ PDF NOT AVAILABLE CASE
+            if (!blob || blob.size === 0) {
+                setAiNotAvailable(true);
+                setAiStage("idle");
+                addLog("AI Insights not available. Request required.", "warning");
+                return;
+            }
 
             // UX delay → ready
             await new Promise(res => setTimeout(res, 1200));
@@ -73,12 +87,14 @@ export default function QuestionPageAi() {
 
         } catch (error) {
             console.error(error);
-            addLog(error.message, "error");
+            setAiNotAvailable(true);
             setAiStage("idle");
+            addLog("AI Insights not available. Request required.", "warning");
         } finally {
             setAiLoading(false);
         }
     };
+
 
 
     useEffect(() => {
@@ -268,7 +284,7 @@ export default function QuestionPageAi() {
     return (
         <div className="w-full pt-24 px-4">
             <Toaster position="top-right" />
-            <div className="max-w-[1000px] mx-auto bg-white rounded-2xl shadow-xl p-8">
+            <div className="max-w-[1000px] mx-auto bg-white rounded-2xl border shadow-xl m-8 p-8">
                 <p className="text-sm text-gray-500 uppercase tracking-wide text-center">
                     Question Paper Search Tool
                 </p>
@@ -373,6 +389,7 @@ export default function QuestionPageAi() {
                                 <div className="md:col-span-2 rounded-xl border border-slate-200 bg-white shadow-sm">
                                     <div className="p-4">
                                         <table className="w-full text-sm table-fixed">
+                                            {/* TABLE HEADER (fixed) */}
                                             <thead>
                                                 <tr className="border-b text-slate-400">
                                                     <th className="w-1/3 px-4 py-3 text-left font-medium">S.No</th>
@@ -380,29 +397,56 @@ export default function QuestionPageAi() {
                                                     <th className="w-1/3 px-4 py-3 text-center font-medium">Action</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                {results.map((item) => (
-                                                    <tr key={item.id} className="border-b last:border-b-0 hover:bg-slate-50 transition">
-                                                        <td className="px-4 py-3">{item.slNo}</td>
-                                                        <td className="px-4 py-3">{item.monthYear}</td>
-                                                        <td className="px-4 py-3 text-center">
-                                                            <button
-                                                                onClick={() => downloadPaper(item)}
-                                                                disabled={downloadingId === item.id}
-                                                                className={`rounded-md px-4 py-1.5 text-xs font-medium transition ${downloadingId === item.id
-                                                                    ? "bg-gray-100 text-gray-500 cursor-not-allowed"
-                                                                    : "bg-blue-50 text-blue-600 hover:bg-blue-100"
-                                                                    }`}
-                                                            >
-                                                                {downloadingId === item.id ? "Downloading..." : "Download"}
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                ))}
-                                            </tbody>
                                         </table>
+
+                                        <div className="relative">
+                                            {/* SCROLLABLE BODY */}
+                                            <div
+                                                className="max-h-[432px] overflow-y-auto hide-scrollbar"
+                                                onScroll={() => setHasScrolled(true)}
+                                            >
+
+                                                <table className="w-full text-sm table-fixed">
+                                                    <tbody>
+                                                        {results.map((item) => (
+                                                            <tr
+                                                                key={item.id}
+                                                                className="border-b last:border-b-0 hover:bg-slate-50 transition"
+                                                            >
+                                                                <td className="w-1/3 px-4 py-3">{item.slNo}</td>
+                                                                <td className="w-1/3 px-4 py-3">{item.monthYear}</td>
+                                                                <td className="w-1/3 px-4 py-3 text-center">
+                                                                    <button
+                                                                        onClick={() => downloadPaper(item)}
+                                                                        disabled={downloadingId === item.id}
+                                                                        className={`rounded-md px-4 py-1.5 text-xs font-medium transition ${downloadingId === item.id
+                                                                            ? "bg-gray-100 text-gray-500 cursor-not-allowed"
+                                                                            : "bg-blue-50 text-blue-600 hover:bg-blue-100"
+                                                                            }`}
+                                                                    >
+                                                                        {downloadingId === item.id ? "Downloading..." : "Download"}
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                        ))}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            {/* BOTTOM HINT */}
+                                            {results.length > 9 && !hasScrolled && (
+                                                <div className="pointer-events-none absolute bottom-0 left-0 w-full text-center bg-gradient-to-t from-white to-transparent py-1">
+                                                    <span className="text-xs text-slate-400">
+                                                        Scroll to view more ↓
+                                                    </span>
+                                                </div>
+                                            )}
+
+                                        </div>
+
                                     </div>
                                 </div>
+
 
                                 <div className="relative rounded-2xl border border-slate-200 bg-white p-6 flex flex-col justify-between shadow-sm overflow-hidden">
                                     <div>
@@ -410,11 +454,12 @@ export default function QuestionPageAi() {
                                             <span className="text-xs font-semibold tracking-wide text-blue-700 bg-blue-50 px-3 py-1 rounded-full">AI ASSISTED</span>
                                             <span className="text-xs text-slate-400">Beta</span>
                                         </div>
-                                        <div className="relative rounded-xl border border-slate-200 bg-slate-50 h-[400px] overflow-hidden flex items-center justify-center">
+                                        <div className="relative rounded-xl border border-slate-200 bg-slate-50 h-[360px] overflow-hidden flex items-center justify-center">
                                             <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="doc" className="w-20 opacity-20" />
 
                                             <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 backdrop-blur-[2px]">
 
+                                                {/* LOADING DOTS */}
                                                 {(aiStage === "thinking" || aiStage === "generating") && (
                                                     <div className="flex gap-1 mb-3">
                                                         <span className="w-2 h-2 bg-blue-500 rounded-full animate-bounce [animation-delay:-0.3s]" />
@@ -423,20 +468,47 @@ export default function QuestionPageAi() {
                                                     </div>
                                                 )}
 
+                                                {/* TITLE */}
                                                 <p className="text-sm font-semibold text-slate-800">
-                                                    {aiStage === "idle" && "AI Exam Insights"}
+                                                    {aiNotAvailable && "AI Insights Not Available"}
+                                                    {!aiNotAvailable && aiStage === "idle" && "AI Exam Insights"}
                                                     {aiStage === "thinking" && "AI is thinking..."}
                                                     {aiStage === "generating" && "Generating insights..."}
                                                     {aiStage === "ready" && "Insights Ready!"}
                                                 </p>
 
-                                                <p className="text-xs text-slate-500 mt-2 max-w-[220px]">
-                                                    {aiStage === "idle" && `Get a smart summary and syllabus breakdown for ${subjectCode}.`}
+                                                {/* DESCRIPTION */}
+                                                <p className="text-xs text-slate-500 mt-2 max-w-[240px] leading-relaxed">
+                                                    {aiNotAvailable && (
+                                                        <>
+                                                            AI insights for <b>{subjectCode}</b> are not generated yet.
+                                                            <br />
+                                                            Submit a request to generate this content.
+                                                        </>
+                                                    )}
+
+                                                    {!aiNotAvailable && aiStage === "idle" && (
+                                                        `Get a smart summary and syllabus breakdown for ${subjectCode}.`
+                                                    )}
+
                                                     {aiStage === "thinking" && "Analyzing previous exam patterns."}
                                                     {aiStage === "generating" && "Preparing important questions & summaries."}
                                                     {aiStage === "ready" && "Your AI-generated insights are ready to download."}
                                                 </p>
+
+                                                {/* GOOGLE FORM LINK */}
+                                                {aiNotAvailable && (
+                                                    <a
+                                                        href="https://docs.google.com/forms/d/e/1FAIpQLSdF8elvbTk5rtQrMJdjoEzLd-kPq9qvBSFO_0nbz5kYFCV76A/viewform?usp=dialog"
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="mt-4 inline-block text-xs font-semibold text-blue-600 hover:underline"
+                                                    >
+                                                        Request AI Insights
+                                                    </a>
+                                                )}
                                             </div>
+
                                         </div>
                                     </div>
 
@@ -444,13 +516,13 @@ export default function QuestionPageAi() {
                                         onClick={handleAiDownload}
                                         disabled={aiStage === "thinking" || aiStage === "generating"}
                                         className={`mt-6 w-full rounded-xl py-3 text-sm font-semibold transition-all flex items-center justify-center gap-2
-        ${aiStage === "idle" &&
+                         ${aiStage === "idle" &&
                                             "bg-slate-800 text-white hover:bg-slate-900 shadow-lg shadow-slate-200"
                                             }
-        ${(aiStage === "thinking" || aiStage === "generating") &&
+                      ${(aiStage === "thinking" || aiStage === "generating") &&
                                             "bg-slate-100 text-slate-400 cursor-wait"
                                             }
-        ${aiStage === "ready" &&
+                         ${aiStage === "ready" &&
                                             "bg-blue-600 text-white hover:bg-blue-700 shadow-lg shadow-blue-200 animate-pulse"
                                             }
     `}
