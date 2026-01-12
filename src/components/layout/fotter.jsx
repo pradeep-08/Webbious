@@ -34,30 +34,48 @@ const Footer = () => {
 
         {/* Social Icons */}
         <div className="flex gap-4 text-2xl">
-          {[FaFacebookF, FaXTwitter, FaInstagram, FaLinkedinIn, FaWhatsapp].map((Icon, idx) => (
+          {[
+
+            {
+              Icon: FaXTwitter,
+              href: "https://x.com/Webbious_IN",
+              color: "text-black",
+            },
+            {
+              Icon: FaInstagram,
+              href: "https://www.instagram.com/webbious/",
+              color: "text-pink-500",
+            },
+            {
+              Icon: FaLinkedinIn,
+              href: "https://www.linkedin.com/company/webbious/posts/?feedView=all",
+              color: "text-blue-700",
+            },
+            {
+              Icon: FaWhatsapp,
+              href: "https://wa.me/8939748901",
+              color: "text-green-500",
+            },
+            {
+              Icon: FaFacebookF,
+              href: "#",
+              color: "text-blue-600",
+            },
+          ].map(({ Icon, href, color }, idx) => (
             <motion.a
-              href="#"
               key={idx}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.95 }}
               className="transition-all"
             >
-              <Icon
-                className={`${
-                  idx === 0
-                    ? "text-blue-600"
-                    : idx === 1
-                    ? "text-black"
-                    : idx === 2
-                    ? "text-pink-500"
-                    : idx === 3
-                    ? "text-blue-700"
-                    : "text-green-500"
-                }`}
-              />
+              <Icon className={color} />
             </motion.a>
           ))}
         </div>
+
       </motion.div>
 
       {/* Giant Text */}
