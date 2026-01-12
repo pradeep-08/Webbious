@@ -55,54 +55,33 @@ export default function QuestionPageAi() {
         setViewStateData(null);
 
         try {
-            addLog("Step 1: Connecting to university portal...");
+            addLog("Connecting to server...");
 
-            const initialResponse = await axios.get(
-                "/qpregular/FrmStudDownloadQP.aspx?IDE_REG=IDE",
+            // Direct GET to the backend API which handles the scraping
+            const searchResponse = await axios.get(
+                `https://qp-backend.vercel.app/api/search?subject=${subjectCode}`,
                 { responseType: "text" }
             );
 
             const parser = new DOMParser();
-            const doc = parser.parseFromString(initialResponse.data, "text/html");
-
-            const vs = doc.getElementById("__VIEWSTATE")?.value;
-            const vsg = doc.getElementById("__VIEWSTATEGENERATOR")?.value;
-            const ev = doc.getElementById("__EVENTVALIDATION")?.value;
-
-            if (!vs) throw new Error("Failed to initialize session.");
-
-            addLog("Session initialized. Sending query...");
-
-            const formData = new URLSearchParams();
-            formData.append("__VIEWSTATE", vs);
-            formData.append("__VIEWSTATEGENERATOR", vsg);
-            if (ev) formData.append("__EVENTVALIDATION", ev);
-            formData.append("HidFldDegree", "IDE");
-            formData.append("Txtsbcd", subjectCode);
-            formData.append("CmdGo", "GO");
-
-            const searchResponse = await axios.post(
-                "/qpregular/FrmStudDownloadQP.aspx?IDE_REG=IDE",
-                formData,
-                { responseType: "text" }
-            );
-
             const resultDoc = parser.parseFromString(
                 searchResponse.data,
                 "text/html"
             );
 
+            // Extract ViewState for subsequent downloads
+            const vs = resultDoc.getElementById("__VIEWSTATE")?.value;
+            const vsg = resultDoc.getElementById("__VIEWSTATEGENERATOR")?.value;
+            const ev = resultDoc.getElementById("__EVENTVALIDATION")?.value;
+
             setViewStateData({
-                __VIEWSTATE:
-                    resultDoc.getElementById("__VIEWSTATE")?.value || vs,
-                __VIEWSTATEGENERATOR:
-                    resultDoc.getElementById("__VIEWSTATEGENERATOR")?.value || vsg,
-                __EVENTVALIDATION:
-                    resultDoc.getElementById("__EVENTVALIDATION")?.value || ev,
+                __VIEWSTATE: vs,
+                __VIEWSTATEGENERATOR: vsg,
+                __EVENTVALIDATION: ev,
             });
 
             const table = resultDoc.getElementById("GrdView");
-            if (!table) throw new Error("No results found.");
+            if (!table) throw new Error("No results found or invalid subject code.");
 
             const rows = Array.from(table.querySelectorAll("tr")).slice(1);
 
@@ -121,10 +100,13 @@ export default function QuestionPageAi() {
                 })
                 .filter(Boolean);
 
+            if (parsed.length === 0) throw new Error("No papers found for this subject.");
+
             setResults(parsed);
             addLog(`Found ${parsed.length} papers.`, "success");
         } catch (err) {
-            addLog(err.message, "error");
+            console.error(err);
+            addLog(err.message || "Failed to fetch papers", "error");
         } finally {
             setLoading(false);
             setProcessingState(null);
@@ -136,15 +118,18 @@ export default function QuestionPageAi() {
             addLog(`Downloading ${item.monthYear}...`);
 
             const formData = new URLSearchParams();
-            Object.entries(viewStateData).forEach(([k, v]) =>
-                v && formData.append(k, v)
-            );
+            // We must pass the ViewState captured from the search result
+            if (viewStateData) {
+                Object.entries(viewStateData).forEach(([k, v]) =>
+                    v && formData.append(k, v)
+                );
+            }
             formData.append("Txtsbcd", subjectCode);
             formData.append(item.downloadBtnName + ".x", "10");
             formData.append(item.downloadBtnName + ".y", "10");
 
             const res = await axios.post(
-                "/qpregular/FrmStudDownloadQP.aspx?IDE_REG=IDE",
+                "https://qp-backend.vercel.app/api/download",
                 formData,
                 { responseType: "blob" }
             );
@@ -157,7 +142,8 @@ export default function QuestionPageAi() {
             URL.revokeObjectURL(url);
 
             addLog(`Downloaded ${item.monthYear}`, "success");
-        } catch {
+        } catch (error) {
+            console.error(error);
             addLog("Download failed.", "error");
         }
     };
@@ -180,31 +166,27 @@ export default function QuestionPageAi() {
             formData.append('__SCROLLPOSITIONY', '0');
             formData.append('HidFldDegree', 'IDE');
             formData.append('Txtsbcd', subjectCode);
-
-            // Server-side Trigger for "Download All" (ZIP)
             formData.append('CmdDown', 'Download');
 
-            const response = await axios.post('/qpregular/FrmStudDownloadQP.aspx?IDE_REG=IDE', formData, {
+            const response = await axios.post('https://qp-backend.vercel.app/api/download', formData, {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
                 responseType: 'blob'
             });
 
-            // Validate response type
             const type = response.data.type;
             if (type !== 'application/zip' && type !== 'application/x-zip-compressed' && type !== 'application/octet-stream') {
                 try {
                     const text = await response.data.text();
-                    if (text.length < 1000) { // Likely an error message if short
-                        throw new Error('Server returned an error/HTML instead of a ZIP file.');
+                    if (text.length < 1000) {
+                        throw new Error('Server returned an error instead of a ZIP file.');
                     }
                 } catch (e) {
-                    // If reading text fails, ignore, it might be binary
+                    // ignore
                 }
             }
 
-            // Create download link for ZIP
             const url = window.URL.createObjectURL(new Blob([response.data], { type: 'application/zip' }));
             const link = document.createElement('a');
             link.href = url;
@@ -215,7 +197,6 @@ export default function QuestionPageAi() {
             window.URL.revokeObjectURL(url);
 
             addLog("Batch download (ZIP) complete.", 'success');
-
 
         } catch (err) {
             console.error(err);
