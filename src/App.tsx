@@ -25,6 +25,7 @@ import AboutUs from "./features/About/AboutUs";
 import ContactUsMain from "./features/Contact/ContactUsMain";
 import ProjectsSection from "./features/Projects/OurProjects";
 import QuestionAiPage from "./features/QuestionAI/QuestionPageAi";
+import UpadatePageAi from "./features/QuestionAI/UpadatePageAi";
 
 
 
@@ -193,6 +194,16 @@ function QuestionAI() {
     </div>
   );
 }
+function UpdateQuestionAI() {
+  return (
+    <div className="min-h-screen bg-white">
+      <CircleCursor />
+      <Header />
+      <UpadatePageAi />
+      <Footer />
+    </div>
+  );
+}
 
 
 function App() {
@@ -207,6 +218,7 @@ function App() {
         <Route path="/solutions" element={<Solutions />} />
         <Route path="/projects" element={<ProjectSec />} />
         <Route path="/questionai" element={<QuestionAI />} />
+        <Route path="/updatequestionai" element={<UpdateQuestionAI />} />
       </Routes>
     </Router>
   );
