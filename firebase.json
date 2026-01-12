@@ -28,6 +28,10 @@
     ],
     "rewrites": [
       {
+        "source": "/qpregular/**",
+        "function": "proxyRequest"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }
