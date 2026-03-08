@@ -363,7 +363,7 @@ export default function CareersPage() {
               <p className="mb-4 text-[#3c4043]">{selectedJob.description}</p>
               <div className="flex items-center gap-2 px-4 py-2 border border-red-300 text-red-600 rounded-full bg-red-50 w-max">
                 <div className="w-4 h-4 rounded-full border-2 border-dashed border-red-500 animate-spin"></div>
-                <span className="text-sm font-medium">We are facing an issue, our dev team is working on it.</span>
+                <span className="text-sm font-medium">We are facing an issue, Try Again Later.</span>
               </div>
               <div className="flex flex-col gap-4 mt-4">
                 <button className="bg-[#0f9d58] text-white px-4 py-2 rounded hover:bg-[#0b7e46]">
