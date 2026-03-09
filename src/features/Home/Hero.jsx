@@ -1,12 +1,13 @@
 import React from 'react';
-import { TypeAnimation } from 'react-type-animation';
-import officeImage from "../../assets/images/heroImage.png";
-import UnderLine from "../../assets/images/underLine.png"
-import { AiFillThunderbolt } from "react-icons/ai";
 import { Helmet } from "react-helmet-async";
+import { FaApple } from "react-icons/fa";
+import { Users, ClipboardList } from "lucide-react";
+import officeImage from "../../assets/images/heroImage.png";
+import { VscLightbulbSparkle } from 'react-icons/vsc';
+import { PiTrendUpFill } from 'react-icons/pi';
+import { Link } from 'react-router-dom';
 
 export default function Hero() {
-
   return (
     <>
       <Helmet>
@@ -39,84 +40,116 @@ export default function Hero() {
   `}</script>
       </Helmet>
 
-      <div className="relative min-h-[75vh] bg-white overflow-hidden">
-        <div className="absolute right-0 top-0 h-full w-full lg:w-1/2 md:w-2/3 sm:w-full z-0">
-          <img
-            src={officeImage}
-            alt="Office setting"
-            className="w-full h-full object-cover"
-          />
-        </div>
+      <div className="relative min-h-screen bg-[#FDFDFD] overflow-hidden flex items-center justify-center pt-14 pb-12 lg:pt-8 lg:pb-24">
+        <div className="max-w-[1400px] mx-auto w-full px-6 lg:px-12 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
 
-        <div className="relative flex items-center justify-center lg:justify-start min-h-[75vh] px-6 lg:px-24 py-12">
-          <div className="max-w-4xl w-full text-center lg:text-left text-gray-100 sm:text-black transition-colors duration-500">
+          {/* Left Column */}
+          <div className="w-full lg:w-[50%] flex flex-col items-center text-center lg:items-start lg:text-left z-10 lg:pr-8 xl:pr-12">
+            {/* Badge */}
+            <div className="flex items-center gap-2 px-4 py-2 bg-gray-100/80 rounded-full mb-8">
+              <PiTrendUpFill className="w-4 h-4 text-black" />
+              <span className="text-sm font-semibold text-gray-900">Innovative Digital Solutions for Growing Brands</span>
+            </div>
 
-            <div className="bg-black h-[400px] bg-opacity-40 p-6 rounded-xl sm:bg-transparent sm:p-0 sm:rounded-none transition-all duration-300">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
-                Empowering Businesses with
-                <br />
+            {/* Heading */}
+            <h1 className="text-4xl md:text-5xl lg:text-[54px] font-medium tracking-tight text-gray-900 leading-[1.1] mt-0">
+              Empowering Businesses with<br className="hidden sm:block" /> <span className="sm:hidden"> </span>
+              <span className='text-[#1877F2]'>Next-Gen</span> Software,<br className="hidden sm:block" /> <span className="sm:hidden"> </span>
+              <span className="font-medium">UI/UX</span> & Digital Solutions.
+            </h1>
 
-                <span className="text-white sm:text-blue-600">
-                  <TypeAnimation
-                    sequence={[
-                      'Next-Gen', 4000,
-                      'Modern', 4000,
-                      'Smart', 4000,
-                      'Innovative', 4000,
-                    ]}
-                    wrapper="span"
-                    speed={3}
-                    repeat={Infinity}
-                  />
-                </span>{" "}
-                <span className="transition-colors duration-500">
-                  Software & Digital
-                </span>
-                <br />
-                <span className="relative inline-block">
-                  <span className="transition-colors duration-500">
-                    Solutions
-                  </span>
-                  <span className="text-white sm:text-blue-600">.</span>
-                  <img src={UnderLine} alt="Logo" className="h-[15px] mt-5 w-auto hidden md:block" />
-                </span>
-              </h1>
-              <div className="mt-20 flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4">
-                <a href="/contact" target="_blank" rel="noopener noreferrer">
-                  <button className="flex items-center px-5 py-2 bg-black text-white rounded-full shadow hover:bg-gray-800 transition sm:bg-black sm:border sm:border-black sm:text-white">
-                    <span className="p-2 sm:p-2 mr-4 sm:mr-5 rounded-full bg-black sm:bg-white ">
-                      {/* <img
-                      width="24"
-                      height="24"
-                      className="block sm:hidden invert" // icon white in mobile
-                      src="https://img.icons8.com/material-outlined/24/000000/lightning-bolt--v1.png"
-                      alt="lightning-bolt"
-                    />
-                    <img
-                      width="24"
-                      height="24"
-                      className="hidden sm:block" // icon black in desktop
-                      src="https://img.icons8.com/material-outlined/24/000000/lightning-bolt--v1.png"
-                      alt="lightning-bolt"
-                    /> */}<span className='width-24 height-24 bg-white text-black'><AiFillThunderbolt /></span>
+            {/* Subheading */}
+            <p className="text-gray-500 text-base md:text-lg mt-5 max-w-[440px] leading-relaxed">
+              We craft modern websites, intuitive user experiences, and custom software solutions that turn ideas into impactful digital products.
+            </p>
 
-                    </span>
-                    <span className="sm:font-bold text-transparent bg-clip-text animate-shine bg-gradient-to-r from-white via-blue-600 to-white">
-                      Start To Grow
-                    </span>
+            {/* Input & Button */}
+            <div className="mt-8 flex flex-col sm:flex-row items-center gap-3 w-full max-w-md">
+              <Link to="/contact"><button className="w-full sm:w-auto px-8 py-4 bg-black text-white rounded-full font-medium hover:bg-gray-800 transition-colors whitespace-nowrap">
+                Start To Grow
+              </button></Link>
+            </div>
 
-                  </button>
-                </a>
+            {/* Avatars */}
+            <div className="mt-10 flex flex-col lg:flex-row items-center gap-4">
+              <div className="flex -space-x-3">
+                <img src="https://i.pravatar.cc/100?img=47" className="w-10 h-10 rounded-full border-2 border-[#FDFDFD] object-cover" alt="avatar 1" />
+                <img src="https://i.pravatar.cc/100?img=32" className="w-10 h-10 rounded-full border-2 border-[#FDFDFD] object-cover" alt="avatar 2" />
+                <img src="https://i.pravatar.cc/100?img=12" className="w-10 h-10 rounded-full border-2 border-[#FDFDFD] object-cover" alt="avatar 3" />
               </div>
-
+              <p className="text-sm font-medium text-gray-900 text-center lg:text-left">
+                <span className="font-bold">Trusted for</span>{" "}
+                <span className="text-gray-400 font-normal">web design, product UI/UX, software development, and digital transformation.</span>
+              </p>
             </div>
           </div>
+
+          {/* Right Column - Hidden on mobile, visible on lg screens and up */}
+          <div className="hidden lg:flex w-full lg:w-[50%] relative z-0 mt-12 lg:mt-0 justify-center lg:justify-end">
+            {/* The image container */}
+            <div className="relative w-full max-w-[500px] lg:max-w-none xl:max-w-[650px] aspect-[4/5] sm:aspect-[4/3] lg:aspect-[4/4.5] overflow-visible flex-shrink-0">
+              <img
+                src={officeImage}
+                alt="Office setting"
+                className="w-full h-full object-cover rounded-[32px] sm:rounded-[40px] shadow-2xl"
+              />
+
+              {/* Floating Card 1: Collaboration */}
+              <div className="absolute -left-4 sm:-left-12 lg:-left-20 xl:-left-28 top-[40%] bg-white p-5 rounded-[20px] shadow-[0_8px_30px_rgb(0,0,0,0.08)] flex items-center gap-4 sm:gap-5 w-60 sm:w-72 xl:w-[300px] transform -translate-y-1/2 transition-transform hover:-translate-y-[52%] cursor-pointer">
+                <div className="flex-1">
+                  <h3 className="font-bold text-gray-900 text-[15px]">Collaboration</h3>
+                  <p className="text-[13px] text-gray-500 mt-1 leading-snug">Collab with others for content creation</p>
+                </div>
+                <div className="text-gray-800 shrink-0">
+                  <Users size={24} strokeWidth={1.5} />
+                </div>
+              </div>
+
+              {/* Floating Card 2: Project */}
+              <div className="absolute left-2 sm:-left-4 lg:-left-8 xl:-left-16 top-[65%] bg-white p-5 rounded-[20px] shadow-[0_8px_30px_rgb(0,0,0,0.08)] flex items-center gap-4 sm:gap-5 w-56 sm:w-64 xl:w-[280px] transform -translate-y-1/2 transition-transform hover:-translate-y-[52%] cursor-pointer">
+                <div className="flex-1">
+                  <h3 className="font-bold text-gray-900 text-[14px] sm:text-[15px]">Project</h3>
+                  <p className="text-[12px] sm:text-[13px] text-gray-500 mt-1 leading-snug">Create projects to hire talents</p>
+                </div>
+                <div className="text-gray-800 shrink-0">
+                  <ClipboardList size={22} strokeWidth={1.5} />
+                </div>
+              </div>
+
+              {/* Floating Card 3: AI Solutions (Top Right) */}
+              <div className="absolute right-0 sm:-right-8 lg:-right-12 xl:-right-16 top-[20%] bg-white p-5 rounded-[20px] shadow-[0_8px_30px_rgb(0,0,0,0.08)] flex items-center gap-4 sm:gap-5 w-60 sm:w-72 xl:w-[300px] transform -translate-y-1/2 transition-transform hover:-translate-y-[52%] cursor-pointer">
+                <div className="flex-1">
+                  <h3 className="font-bold text-gray-900 text-[14px] sm:text-[15px]">AI Solutions</h3>
+                  <p className="text-[12px] sm:text-[13px] text-gray-500 mt-1 leading-snug">Smart models to automate tasks</p>
+                </div>
+                <div className="text-gray-800 shrink-0">
+                  <VscLightbulbSparkle size={24} />
+                </div>
+              </div>
+
+              {/* Floating Card 4: Scalability (Bottom Right) */}
+              <div className="absolute right-4 sm:-right-0 lg:-right-4 xl:-right-8 top-[85%] bg-white p-5 rounded-[20px] shadow-[0_8px_30px_rgb(0,0,0,0.08)] flex items-center gap-4 sm:gap-5 w-56 sm:w-64 xl:w-[280px] transform -translate-y-1/2 transition-transform hover:-translate-y-[52%] cursor-pointer">
+                <div className="flex-1">
+                  <h3 className="font-bold text-gray-900 text-[14px] sm:text-[15px]">Scalability</h3>
+                  <p className="text-[12px] sm:text-[13px] text-gray-500 mt-1 leading-snug">Built to scale with your business</p>
+                </div>
+                <div className="text-gray-800 shrink-0">
+                  <PiTrendUpFill size={24} />
+                </div>
+              </div>
+
+              {/* Pagination Dots (bottom) */}
+              {/* <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 flex items-center gap-2 pb-4">
+                <div className="w-2 h-2 rounded-full bg-gray-300"></div>
+                <div className="w-2 h-2 rounded-full bg-gray-300"></div>
+                <div className="w-2 h-2 rounded-full bg-gray-300"></div>
+                <div className="w-2.5 h-2.5 rounded-full bg-gray-500"></div>
+              </div> */}
+            </div>
+          </div>
+
         </div>
       </div>
     </>
-
   );
 }
-
-
-

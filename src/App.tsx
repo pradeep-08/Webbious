@@ -9,6 +9,7 @@ import {
 
 import "/App.css";
 import CircleCursor from "./components/ui/cursor";
+import AIChatAssistant from "./components/ui/AIChatAssistant";
 import Header from "./components/layout/Navbar";
 import Hero from "./features/Home/Hero";
 import AICard from "./features/AI/AI Card";
@@ -209,6 +210,7 @@ function UpdateQuestionAI() {
 function App() {
   return (
     <Router>
+      <AIChatAssistant />
       <Routes>
         <Route path="/" element={<MainContent />} />
         <Route path="/careers" element={<CareersContent />} />
