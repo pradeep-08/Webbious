@@ -47,7 +47,7 @@ const Team = () => {
                 innovation, impact, and keep you ahead of the competition."
               </p>
               <p className="text-gray-900 font-bold text-base sm:text-lg mt-2">Pradeep</p>
-              <p className="text-gray-600 text-sm">CEO & Founder of Webbious</p>
+              <p className="text-gray-600 text-sm">Founder</p>
             </div>
           </div>
         </div>
