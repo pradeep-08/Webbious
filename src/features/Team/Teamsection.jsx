@@ -9,7 +9,7 @@ import { Helmet } from "react-helmet-async";
 const team = [
   {
     name: "Pradeep",
-    role: "Founder & CEO",
+    role: "Founder",
     desc: "Driving innovation and strategic leadership across all fronts of the organization.",
     image: "https://ui-avatars.com/api/?name=Pradeep&background=ccc&color=fff&rounded=true",
     linkedin: "https://linkedin.com/in/pradeep-t-1b97491aa",
