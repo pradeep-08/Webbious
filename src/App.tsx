@@ -27,6 +27,7 @@ import ContactUsMain from "./features/Contact/ContactUsMain";
 import ProjectsSection from "./features/Projects/OurProjects";
 import QuestionAiPage from "./features/QuestionAI/QuestionPageAi";
 import UpadatePageAi from "./features/QuestionAI/UpadatePageAi";
+import ExcelToCanPage from "./features/ExcelToCan/ExcelToCanPage";
 
 
 
@@ -206,11 +207,21 @@ function UpdateQuestionAI() {
   );
 }
 
+function ExcelToCan() {
+  return (
+    <div className="min-h-screen bg-white">
+      <CircleCursor />
+      <Header />
+      <ExcelToCanPage />
+      <Footer />
+    </div>
+  );
+}
+
 
 function App() {
   return (
     <Router>
-      <AIChatAssistant />
       <Routes>
         <Route path="/" element={<MainContent />} />
         <Route path="/careers" element={<CareersContent />} />
@@ -221,6 +232,7 @@ function App() {
         <Route path="/projects" element={<ProjectSec />} />
         <Route path="/questionai" element={<QuestionAI />} />
         <Route path="/updatequestionai" element={<UpdateQuestionAI />} />
+        <Route path="/exceltocan" element={<ExcelToCan />} />
       </Routes>
     </Router>
   );
