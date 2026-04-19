@@ -1,19 +1,54 @@
 import React, { useState, useRef } from 'react';
 import { UploadCloud, FileType, CheckCircle, AlertTriangle, Download, XCircle, Code } from 'lucide-react';
 
-type ConversionResult = {
-  filename: string;
-  testcase_name: string;
-  step_count: number;
-  unmatched_count: number;
-  unmatched_steps: string[];
-  can_content: string;
+const mockResult = {
+  total: 14,
+  mapped: 11,
+  unmatched: 3,
+  unmatchedSteps: [
+    "Row 7: 'Wait for signal X to be greater than 50'",
+
+  ],
+  previewCode: `/* -----------------------------------------------------
+ * GENERATED CAPL SCRIPT
+ * Generated on: ${new Date().toLocaleDateString()}
+ * -----------------------------------------------------
+ */
+
+variables
+{
+  message 0x100 msg_test;
+  timer t_timeout;
+}
+
+on start
+{
+  write("Starting test execution...");
+  setTimer(t_timeout, 5000);
+}
+
+// [MAPPED] Row 2: Set speed to 100 km/h
+on key 's'
+{
+  msg_test.Speed = 100;
+  output(msg_test);
+}
+
+// [UNMATCHED] Row 7: 'Wait for signal X to be greater than 50'
+// TODO: Implement manual CAPL logic here
+
+// [MAPPED] Row 9: Send diagnostic request
+on key 'd'
+{
+  // Generated code for diagnostic
+}
+`
 };
 
 const ExcelToCanPage = () => {
   const [file, setFile] = useState<File | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [result, setResult] = useState<ConversionResult | null>(null);
+  const [result, setResult] = useState<typeof mockResult | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,32 +68,16 @@ const ExcelToCanPage = () => {
     e.preventDefault();
   };
 
-  const processFile = async (uploadedFile: File) => {
+  const processFile = (uploadedFile: File) => {
     setFile(uploadedFile);
     setIsProcessing(true);
     setResult(null);
 
-    const form = new FormData();
-    form.append("file", uploadedFile);
-
-    try {
-      const res = await fetch("http://localhost:8000/convert", {
-        method: "POST",
-        body: form,
-      });
-      if (!res.ok) {
-        const text = await res.text();
-        alert("Conversion failed: " + text);
-        setIsProcessing(false);
-        return;
-      }
-      const data: ConversionResult = await res.json();
-      setResult(data);
-    } catch (err) {
-      alert("Error connecting to server. Is the FastAPI backend running?");
-    } finally {
+    // Simulate processing time
+    setTimeout(() => {
       setIsProcessing(false);
-    }
+      setResult(mockResult);
+    }, 1500);
   };
 
   const clearProcess = () => {
@@ -67,19 +86,6 @@ const ExcelToCanPage = () => {
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
-  };
-
-  const handleDownload = () => {
-    if (!result) return;
-    const blob = new Blob([result.can_content], { type: "text/plain" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = result.filename;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
   };
 
   return (
@@ -122,7 +128,7 @@ const ExcelToCanPage = () => {
                   ref={fileInputRef}
                   onChange={handleFileChange}
                   className="hidden"
-                  accept=".xlsx, .xls, .xlsm"
+                  accept=".xlsx, .xls"
                 />
                 <button
                   onClick={() => fileInputRef.current?.click()}
@@ -152,10 +158,7 @@ const ExcelToCanPage = () => {
                 >
                   Convert Another
                 </button>
-                <button 
-                  onClick={handleDownload}
-                  className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors shadow-md flex items-center gap-2"
-                >
+                <button className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors shadow-md flex items-center gap-2">
                   <Download size={18} />
                   Download .can
                 </button>
@@ -166,22 +169,22 @@ const ExcelToCanPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 flex flex-col">
                 <span className="text-sm font-medium text-gray-500 uppercase tracking-wider">Total Steps</span>
-                <span className="text-4xl font-bold mt-2 text-gray-800">{result.step_count}</span>
+                <span className="text-4xl font-bold mt-2 text-gray-800">{result.total}</span>
               </div>
               <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 flex flex-col">
                 <span className="text-sm font-medium text-green-600 uppercase tracking-wider">Mapped</span>
                 <span className="text-4xl font-bold mt-2 text-green-600 flex items-center gap-2">
-                  {result.step_count - result.unmatched_count}
+                  {result.mapped}
                 </span>
               </div>
               <div className="bg-white rounded-xl p-6 shadow-sm border border-orange-100 flex flex-col bg-orange-50/30">
                 <span className="text-sm font-medium text-orange-600 uppercase tracking-wider">Unmatched</span>
-                <span className="text-4xl font-bold mt-2 text-orange-600">{result.unmatched_count}</span>
+                <span className="text-4xl font-bold mt-2 text-orange-600">{result.unmatched}</span>
               </div>
             </div>
 
             {/* Unmatched Warnings (Prominent) */}
-            {result.unmatched_steps.length > 0 && (
+            {result.unmatchedSteps.length > 0 && (
               <div className="bg-orange-50 border-l-4 border-orange-500 p-6 rounded-r-xl shadow-sm">
                 <div className="flex gap-3 mb-3">
                   <AlertTriangle className="text-orange-500 flex-shrink-0 mt-1" size={24} />
@@ -193,7 +196,7 @@ const ExcelToCanPage = () => {
                   </div>
                 </div>
                 <ul className="mt-4 space-y-2 ml-9">
-                  {result.unmatched_steps.map((step, idx) => (
+                  {result.unmatchedSteps.map((step, idx) => (
                     <li key={idx} className="flex gap-2 text-orange-800 bg-orange-100/50 p-2 rounded items-start font-mono text-sm">
                       <XCircle size={16} className="text-orange-400 mt-0.5 flex-shrink-0" />
                       {step}
@@ -208,19 +211,16 @@ const ExcelToCanPage = () => {
               <div className="bg-gray-800 px-4 py-3 flex items-center justify-between border-b border-gray-700">
                 <div className="flex items-center gap-2 text-gray-300">
                   <Code size={18} />
-                  <span className="font-mono text-sm tracking-wide">{result.filename}</span>
+                  <span className="font-mono text-sm tracking-wide">generated_script.can</span>
                 </div>
-                <button 
-                  onClick={handleDownload}
-                  className="text-gray-400 hover:text-white transition-colors text-sm font-medium flex items-center gap-1"
-                >
+                <button className="text-gray-400 hover:text-white transition-colors text-sm font-medium flex items-center gap-1">
                   <Download size={14} /> Download
                 </button>
               </div>
               <div className="p-6 overflow-x-auto">
                 <pre className="text-gray-300 font-mono text-sm leading-relaxed">
                   <code>
-                    {result.can_content}
+                    {result.previewCode}
                   </code>
                 </pre>
               </div>
