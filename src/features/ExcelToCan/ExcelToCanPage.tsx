@@ -1,54 +1,18 @@
 import React, { useState, useRef } from 'react';
 import { UploadCloud, FileType, CheckCircle, AlertTriangle, Download, XCircle, Code } from 'lucide-react';
 
-const mockResult = {
-  total: 14,
-  mapped: 11,
-  unmatched: 3,
-  unmatchedSteps: [
-    "Row 7: 'Wait for signal X to be greater than 50'",
-
-  ],
-  previewCode: `/* -----------------------------------------------------
- * GENERATED CAPL SCRIPT
- * Generated on: ${new Date().toLocaleDateString()}
- * -----------------------------------------------------
- */
-
-variables
-{
-  message 0x100 msg_test;
-  timer t_timeout;
+export interface ConversionResult {
+  total: number;
+  mapped: number;
+  unmatched: number;
+  unmatchedSteps: string[];
+  previewCode: string;
 }
-
-on start
-{
-  write("Starting test execution...");
-  setTimer(t_timeout, 5000);
-}
-
-// [MAPPED] Row 2: Set speed to 100 km/h
-on key 's'
-{
-  msg_test.Speed = 100;
-  output(msg_test);
-}
-
-// [UNMATCHED] Row 7: 'Wait for signal X to be greater than 50'
-// TODO: Implement manual CAPL logic here
-
-// [MAPPED] Row 9: Send diagnostic request
-on key 'd'
-{
-  // Generated code for diagnostic
-}
-`
-};
 
 const ExcelToCanPage = () => {
   const [file, setFile] = useState<File | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [result, setResult] = useState<typeof mockResult | null>(null);
+  const [result, setResult] = useState<ConversionResult | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,16 +32,48 @@ const ExcelToCanPage = () => {
     e.preventDefault();
   };
 
-  const processFile = (uploadedFile: File) => {
+  const processFile = async (uploadedFile: File) => {
     setFile(uploadedFile);
     setIsProcessing(true);
     setResult(null);
 
-    // Simulate processing time
-    setTimeout(() => {
+    const formData = new FormData();
+    formData.append('file', uploadedFile);
+
+    try {
+      // NOTE: Ensure your Python backend is running and replace this URL with your actual endpoint if different.
+      // Expected backend response matches the ConversionResult interface.
+      const response = await fetch('https://py-script-xi.vercel.app/api/convert-excel-to-can', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error(`Server responded with status ${response.status}`);
+      }
+
+      const data: ConversionResult = await response.json();
+      setResult(data);
+    } catch (error) {
+      console.error('Error uploading file:', error);
+      alert('Failed to process file. Please ensure your Python backend is running at https://py-script-xi.vercel.app/.');
+    } finally {
       setIsProcessing(false);
-      setResult(mockResult);
-    }, 1500);
+    }
+  };
+
+  const handleDownload = () => {
+    if (!result?.previewCode) return;
+    const blob = new Blob([result.previewCode], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    const baseName = file ? file.name.replace(/\.[^/.]+$/, "") : "generated_script";
+    a.download = `${baseName}.can`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   };
 
   const clearProcess = () => {
@@ -158,7 +154,10 @@ const ExcelToCanPage = () => {
                 >
                   Convert Another
                 </button>
-                <button className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors shadow-md flex items-center gap-2">
+                <button
+                  onClick={handleDownload}
+                  className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors shadow-md flex items-center gap-2"
+                >
                   <Download size={18} />
                   Download .can
                 </button>
@@ -213,7 +212,10 @@ const ExcelToCanPage = () => {
                   <Code size={18} />
                   <span className="font-mono text-sm tracking-wide">generated_script.can</span>
                 </div>
-                <button className="text-gray-400 hover:text-white transition-colors text-sm font-medium flex items-center gap-1">
+                <button
+                  onClick={handleDownload}
+                  className="text-gray-400 hover:text-white transition-colors text-sm font-medium flex items-center gap-1"
+                >
                   <Download size={14} /> Download
                 </button>
               </div>
