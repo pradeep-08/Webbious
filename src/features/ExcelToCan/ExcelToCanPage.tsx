@@ -47,6 +47,10 @@ const ExcelToCanPage = () => {
         method: 'POST',
         body: formData,
       });
+      // const response = await fetch('http://localhost:8000/api/convert-excel-to-can', {
+      //   method: 'POST',
+      //   body: formData,
+      // });
 
       if (!response.ok) {
         throw new Error(`Server responded with status ${response.status}`);
@@ -89,7 +93,7 @@ const ExcelToCanPage = () => {
       <div className="container mx-auto px-4 max-w-5xl">
         <div className="mb-10 text-center">
           <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-indigo-600 mb-4">
-            Excel to CAPL Generator
+            Excel to CAPL Generator (Beta)
           </h1>
           <p className="text-gray-600 max-w-2xl mx-auto text-lg">
             Convert your test specification Excel files directly into ready-to-run .can scripts.

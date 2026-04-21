@@ -1,12 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FaFacebookF, FaXTwitter, FaInstagram, FaLinkedinIn, FaWhatsapp } from 'react-icons/fa6';
+import { useLocation } from 'react-router-dom';
 import logo from "../../assets/images/TeckStack/logo.png";
 
 const Footer = () => {
+  const location = useLocation();
+  const isExcelToCan = location.pathname === '/exceltocan';
+
   return (
     <footer className="bg-gray-100 text-black pt-12 pb-6 relative overflow-hidden">
       {/* Top Row */}
+      {!isExcelToCan && (
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -77,6 +82,7 @@ const Footer = () => {
         </div>
 
       </motion.div>
+      )}
 
       {/* Giant Text */}
       <motion.div
