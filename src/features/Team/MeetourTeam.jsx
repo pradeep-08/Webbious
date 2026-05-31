@@ -43,7 +43,7 @@ const Team = () => {
 
             <div className="mt-6 text-center md:text-left max-w-xs sm:max-w-sm md:max-w-md">
               <p className="italic text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed">
-                "At Webbious, we build more than software—we shape the future. Our solutions drive
+                "At Webbious, we build more than software we shape the future. Our solutions drive
                 innovation, impact, and keep you ahead of the competition."
               </p>
               <p className="text-gray-900 font-bold text-base sm:text-lg mt-2">Pradeep</p>
